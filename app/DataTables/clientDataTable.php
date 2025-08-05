@@ -22,7 +22,6 @@ class clientDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'client.action')
             ->setRowId('id')
             ->editColumn('created_at', function ($client) {
                 if (!$client->created_at) {
@@ -32,7 +31,24 @@ class clientDataTable extends DataTable
                 $date = \Carbon\Carbon::parse($client->created_at);
 
                 return $date->diffForHumans();
-            });
+            })
+            ->addColumn('action', function ($client) {
+                $actionHtml = '
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-soft-warning align-middle fs-18 update-user" data-id="' . $client->id . '" data-bs-toggle="modal" data-bs-target="#editClientModal">
+                            <iconify-icon icon="solar:pen-2-broken"></iconify-icon>
+                        </button>
+                        <form class="delete-form" action="' . route('user.delete', $client->id) . '" method="POST" style="display: inline;">
+                            ' . csrf_field() . '
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-soft-danger align-middle fs-18">
+                                <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"></iconify-icon>
+                            </button>
+                        </form>
+                    </div>';
+                return $actionHtml;
+            })
+            ->rawColumns(['action']);
     }
 
     /**
@@ -74,11 +90,11 @@ class clientDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('name'),
-            Column::make('contact'),
+            Column::make('contact_person'),
             Column::make('email'),
             Column::make('phone'),
             Column::make('address'),
-            Column::make('tax'),
+            Column::make('tax_number'),
             Column::make('type'),
             Column::make('created_at'),
             Column::computed('action')

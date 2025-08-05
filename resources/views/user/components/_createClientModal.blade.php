@@ -2,16 +2,20 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createUserModalLabel">Create User</h5>
+                <h5 class="modal-title" id="createUserModalLabel">Create Client</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="createUserForm" action="{{ route('users.create') }}" class="row" method="POST" enctype="multipart/form-data">
+                <form id="createClientForm" action="{{route('client.create') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="status" value="pending">
                     <div class="mb-3 col-md-12">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+
+                    <div class="mb-3 col-md-12">
+                        <label for="contact_person" class="form-label">Contact</label>
+                        <input type="text" class="form-control" id="contact_person" name="contact_person" required>
                     </div>
 
                     <div class="mb-3 col-md-12">
@@ -25,27 +29,30 @@
                     </div>
 
                     <div class="mb-3 col-md-12">
-                        <label for="role" class="form-label">Role</label>
-                        <select class="form-control" id="role" name="role" required>
-                            <option value="" disabled selected>Choose Role</option>
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="address" name="address" required>
+                    </div>
 
+                    <div class="mb-3 col-md-12">
+                        <label for="tax_number" class="form-label">Tax Number</label>
+                        <input type="text" class="form-control" id="tax_number" name="tax_number" required>
+                    </div>
+
+                    <div class="mb-3 col-md-12">
+                        <label for="role" class="form-label">Type</label>
+                        <select class="form-control" id="type" name="type" required>
+                            <option value="" disabled selected>Choose Type</option>
+                            <option value="individual">individual</option>
+                            <option value="company">company</option>
                         </select>
                     </div>
 
-                    <div class="mb-3 col-md-12">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                        <small class="text-warning">Password must be at least 8 characters long.</small>
-                    </div>
-                    <div class="mb-3 col-md-12">
-                        <label for="password_confirmation" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
-                    </div>
+
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" form="createUserForm" class="btn btn-primary" id="createUserButton">Create User</button>
+                <button type="submit" form="createClientForm" class="btn btn-primary" >Create Client</button>
             </div>
         </div>
     </div>
