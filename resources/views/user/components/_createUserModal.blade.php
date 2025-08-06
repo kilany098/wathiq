@@ -8,7 +8,6 @@
             <div class="modal-body">
                 <form id="createUserForm" action="{{ route('users.create') }}" class="row" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="status" value="pending">
                     <div class="mb-3 col-md-12">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" name="name" required>

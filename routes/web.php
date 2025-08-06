@@ -7,6 +7,12 @@ use App\Http\Controllers\Users\{
     UserController,
     ClientController
 };
+use App\Http\Controllers\Inventory\{
+WarehouseController,
+CategoryController,
+ItemController,
+TransactionController
+};    
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,18 +27,56 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
 
     //Users Panel
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::post('/users/create', [UserController::class, 'store'])->name('users.create');
-    Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
-    Route::put('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
-    Route::delete('/user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
-
+    Route::prefix('users')->group(function(){
+    Route::get('/', [UserController::class, 'index'])->name('users.index');
+    Route::post('/create', [UserController::class, 'store'])->name('users.create');
+    Route::get('/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/update/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
+    });
     //Clients Panel
-    Route::get('/client', [ClientController::class, 'index'])->name('client.index');
-    Route::post('/client/create', [ClientController::class, 'store'])->name('client.create');
-    Route::get('/client/edit/{id}', [ClientController::class, 'edit'])->name('client.edit');
-    Route::put('/client/update/{id}', [ClientController::class, 'update'])->name('client.update');
-    Route::delete('/client/delete/{id}', [ClientController::class, 'delete'])->name('client.delete');
+    Route::prefix('client')->group(function(){
+    Route::get('/', [ClientController::class, 'index'])->name('client.index');
+    Route::post('/create', [ClientController::class, 'store'])->name('client.create');
+    Route::get('/edit/{id}', [ClientController::class, 'edit'])->name('client.edit');
+    Route::put('/update/{id}', [ClientController::class, 'update'])->name('client.update');
+    Route::delete('/delete/{id}', [ClientController::class, 'delete'])->name('client.delete');
+    });
+    //Warehouses Panel
+    Route::prefix('warehouse')->group(function(){
+    Route::get('/', [WarehouseController::class, 'index'])->name('warehouse.index');
+    Route::post('/create', [WarehouseController::class, 'store'])->name('warehouse.create');
+    Route::get('/edit/{id}', [WarehouseController::class, 'edit'])->name('warehouse.edit');
+    Route::put('/update/{id}', [WarehouseController::class, 'update'])->name('warehouse.update');
+    Route::delete('/delete/{id}', [WarehouseController::class, 'delete'])->name('warehouse.delete');
+    });
+    //categories Panel
+    Route::prefix('category')->group(function(){
+    Route::get('/', [CategoryController::class, 'index'])->name('category.index');
+    Route::post('/create', [CategoryController::class, 'store'])->name('category.create');
+    Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::put('/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::delete('/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+    });
+    //items Panel
+    Route::prefix('item')->group(function(){
+    Route::get('/', [ItemController::class, 'index'])->name('item.index');
+    Route::post('/create', [ItemController::class, 'store'])->name('item.create');
+    Route::get('/edit/{id}', [ItemController::class, 'edit'])->name('item.edit');
+    Route::put('/update/{id}', [ItemController::class, 'update'])->name('item.update');
+    Route::delete('/delete/{id}', [ItemController::class, 'delete'])->name('item.delete');
+    });
+    //transactions Panel
+    Route::prefix('transaction')->group(function(){
+    Route::get('/', [TransactionController::class, 'index'])->name('transaction.index');
+    Route::post('/create', [TransactionController::class, 'store'])->name('transaction.create');
+    Route::get('/edit/{id}', [TransactionController::class, 'edit'])->name('transaction.edit');
+    Route::put('/update/{id}', [TransactionController::class, 'update'])->name('transaction.update');
+    Route::delete('/delete/{id}', [TransactionController::class, 'delete'])->name('transaction.delete');
+    });
+
+
+
 });
 
 

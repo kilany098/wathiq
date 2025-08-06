@@ -34,7 +34,6 @@ class UserController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
             'phone' => $validated['phone'],
-            'status' => 'pending',
             'password' => Hash::make($validated['password']),
         ]);
         $user->addRole($validated['role']);
@@ -85,6 +84,6 @@ class UserController extends Controller
         $user = User::find($id);
         $user->removeRole($user->roles->first()->name);
         $user->delete();
-        return response()->json(['message' => 'User deleted successfully'], 201);
+        return response()->json(['message' => 'User deleted successfully',], 200);
     }
 }

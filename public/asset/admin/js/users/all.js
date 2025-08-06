@@ -122,7 +122,9 @@ $(document).ready(function () {
         });
     });
 
-    $(".delete-form").on("submit", function (e) {
+    $("#user-table").on("submit", ".delete-form", function (e) {
+        e.preventDefault();
+
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -143,16 +145,15 @@ $(document).ready(function () {
                         ),
                     },
                     success: function (response) {
-                        if (response) {
                             Swal.fire({
                                 title: "Deleted!",
-                                text: "The user has been deleted.",
+                                text: response.message,
                                 icon: "success",
                                 showCloseButton: false,
                             }).then(() => {
                                 $("#user-table").DataTable().ajax.reload();
                             });
-                        }
+                        
                     },
                     error: function (response) {
                         Swal.fire({

@@ -59,7 +59,7 @@
                 <div class="collapse" id="sidebarInventory">
                     <ul class="sub-menu">
                         <li class="side-nav-item">
-                            <a href="#" class="side-nav-link">
+                            <a href="{{route('warehouse.index')}}" class="side-nav-link">
                                 <span class="menu-text">Warehouses</span>
                             </a>
                         </li>

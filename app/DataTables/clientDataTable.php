@@ -38,7 +38,7 @@ class clientDataTable extends DataTable
                         <button class="btn btn-soft-warning align-middle fs-18 update-user" data-id="' . $client->id . '" data-bs-toggle="modal" data-bs-target="#editClientModal">
                             <iconify-icon icon="solar:pen-2-broken"></iconify-icon>
                         </button>
-                        <form class="delete-form" action="' . route('user.delete', $client->id) . '" method="POST" style="display: inline;">
+                        <form class="delete-form" action=' . route('client.delete', $client->id) . ' method="POST" style="display: inline;">
                             ' . csrf_field() . '
                             <input type="hidden" name="_method" value="DELETE">
                             <button type="submit" class="btn btn-soft-danger align-middle fs-18">

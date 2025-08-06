@@ -54,4 +54,114 @@ $(document).ready(function () {
         });
     });
 
+$(document).on("click", ".update-user", function (e) {
+        let id = $(this).data("id");
+
+        $.ajax({
+            url: "/client/edit/" + id,
+            method: "GET",
+            dataType: "json",
+            success: function (response) {
+                // Populate form fields
+                $("#editClientId").val(response.client.id);
+                $("#edit_name").val(response.client.name);
+                $("#edit_contact_person").val(response.client.contact_person);
+                $("#edit_email").val(response.client.email);
+                $("#edit_phone").val(response.client.phone);
+                $("#edit_address").val(response.client.address);
+                $("#edit_tax_number").val(response.client.tax_number);
+                $("#edit_type").val(response.client.type);
+
+
+
+                $("#editUserModal").modal("show");
+            },
+            error: function (response) {
+                Swal.fire({
+                    title: "Error",
+                    text: "There was a problem fetching user data.",
+                    icon: "error",
+                    showCloseButton: false,
+                });
+            },
+        });
+    });
+
+$("#editClientForm").on("submit", function (e) {
+        e.preventDefault();
+        let id = $("#editClientId").val();
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: "/client/update/" + id,
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (response) {
+                if (response) {
+                    Swal.fire({
+                        title: "Success",
+                        text: "The client has been Updated successfully",
+                        icon: "success",
+                        showCloseButton: false,
+                    }).then(() => {
+                        $("#editClientModal").modal("hide");
+                        $("#client-table").DataTable().ajax.reload();
+                    });
+                }
+            },
+            error: function (xhr) {},
+        });
+    });
+
+$("#client-table").on("submit", ".delete-form", function (e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                let url = $(this).attr("action");
+                $.ajax({
+                    url: url,
+                    type: "DELETE",
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        ),
+                    },
+                    success: function (response) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: response.message,
+                                icon: "success",
+                                showCloseButton: false,
+                            }).then(() => {
+                                $("#client-table").DataTable().ajax.reload();
+                            });
+                        
+                    },
+                    error: function (response) {
+                        Swal.fire({
+                            title: "Error!",
+                            text: "Failed to delete user",
+                            icon: "error",
+                        });
+                    },
+                });
+            }
+        });
+    });
+
+
 });
