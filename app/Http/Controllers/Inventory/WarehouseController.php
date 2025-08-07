@@ -66,5 +66,14 @@ class WarehouseController extends Controller
         return response()->json(['message' => 'Warehouse updated successfully'], 200);
     }
 
+public function delete($id)
+    {
+        $warehouse = warehouse::find($id);
+        $warehouse->delete();
+        return response()->json(['message' => 'Warehouse deleted successfully',], 200);
+    }
 
+
+
+    
 }

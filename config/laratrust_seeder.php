@@ -30,9 +30,6 @@ return [
         'hr' => [
             'module_1_name' => 'r,u',
         ],
-        'accountant' => [
-            'module_1_name' => 'c,r,u,d',
-        ],
         'technician' => [
             'module_1_name' => 'c,r,u,d',
         ],

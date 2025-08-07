@@ -17,4 +17,7 @@ class warehouse extends Model
     {
         return $this->hasMany(transaction::class);
     }
+    public function items(){
+        return $this->hasMany(items::class);
+    }
 }

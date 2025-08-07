@@ -64,19 +64,19 @@
                             </a>
                         </li>
                         <li class="side-nav-item">
-                            <a href="/admin" class="side-nav-link">
+                            <a href="{{route('category.index')}}" class="side-nav-link">
                                 <span class="menu-text">Categories</span>
                             </a>
                         </li>
                         <li class="side-nav-item">
-                            <a href="/trucker" class="side-nav-link">
+                            <a href="{{route('item.index')}}" class="side-nav-link">
                                 <span class="menu-text">Items</span>
                             </a>
                         </li>
                         <li class="side-nav-item">
-                            <a href="/trucker" class="side-nav-link">
+                            <a href="{{route('stock.index')}}" class="side-nav-link">
                                 <span class="menu-text">Low Stock</span>
-                                <span class="badge bg-danger rounded">5 Stock Alert</span>
+                                <span class="badge bg-danger rounded">{{$stock_min}} Stock Alert</span>
                             </a>
                         </li>
                         <li class="side-nav-item">

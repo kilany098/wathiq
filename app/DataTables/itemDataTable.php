@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\item;
+use App\Models\items;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -17,21 +17,49 @@ class itemDataTable extends DataTable
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder<item> $query Results from query() method.
+     * @param QueryBuilder<items> $query Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'item.action')
-            ->setRowId('id');
+            ->setRowId('id')
+             ->addColumn('action', function ($item) {
+                $actionHtml = '
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-soft-warning align-middle fs-18 update-user" data-id="' . $item->id . '" data-bs-toggle="modal" data-bs-target="#editItemModal">
+                            <iconify-icon icon="solar:pen-2-broken"></iconify-icon>
+                        </button>
+                        <form class="delete-form" action=' . route('item.delete', $item->id) . ' method="POST" style="display: inline;">
+                            ' . csrf_field() . '
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-soft-danger align-middle fs-18">
+                                <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"></iconify-icon>
+                            </button>
+                        </form>
+                    </div>';
+                return $actionHtml;
+            })
+            ->addColumn('category', function ($item) {
+                return $item->category->name;
+            })
+            ->editColumn('created_at', function ($item) {
+                if (!$item->created_at) {
+                    return '-';
+                }
+
+                $date = \Carbon\Carbon::parse($item->created_at);
+
+                return $date->diffForHumans();
+            })
+            ->rawColumns(['action']);
     }
 
     /**
      * Get the query source of dataTable.
      *
-     * @return QueryBuilder<item>
+     * @return QueryBuilder<items>
      */
-    public function query(item $model): QueryBuilder
+    public function query(items $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -63,15 +91,18 @@ class itemDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
+           Column::make('id'),
+            Column::make('name'),
+            Column::make('code'),
+            Column::make('category'),
+            Column::make('description'),
+            Column::make('quantity'),
             Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 

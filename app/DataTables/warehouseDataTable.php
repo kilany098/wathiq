@@ -29,6 +29,13 @@ class warehouseDataTable extends DataTable
                         <button class="btn btn-soft-warning align-middle fs-18 update-user" data-id="' . $warehouse->id . '" data-bs-toggle="modal" data-bs-target="#editWareModal">
                             <iconify-icon icon="solar:pen-2-broken"></iconify-icon>
                         </button>
+                        <form class="delete-form" action=' . route('warehouse.delete', $warehouse->id) . ' method="POST" style="display: inline;">
+                            ' . csrf_field() . '
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-soft-danger align-middle fs-18">
+                                <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"></iconify-icon>
+                            </button>
+                        </form>
                     </div>';
                 return $actionHtml;
             })

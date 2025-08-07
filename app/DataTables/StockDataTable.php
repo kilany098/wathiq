@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\category;
+use App\Models\items;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,53 +12,41 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class categoryDataTable extends DataTable
+class StockDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder<category> $query Results from query() method.
+     * @param QueryBuilder<items> $query Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
-->addColumn('action', function ($category) {
-                $actionHtml = '
-                    <div class="d-flex gap-2">
-                        <button class="btn btn-soft-warning align-middle fs-18 update-user" data-id="' . $category->id . '" data-bs-toggle="modal" data-bs-target="#editCategoryModal">
-                            <iconify-icon icon="solar:pen-2-broken"></iconify-icon>
-                        </button>
-                        <form class="delete-form" action=' . route('category.delete', $category->id) . ' method="POST" style="display: inline;">
-                            ' . csrf_field() . '
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-soft-danger align-middle fs-18">
-                                <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"></iconify-icon>
-                            </button>
-                        </form>
-                    </div>';
-                return $actionHtml;
+            ->addColumn('category', function ($item) {
+                return $item->category->name;
             })
-            ->editColumn('created_at', function ($warehouse) {
-                if (!$warehouse->created_at) {
+            ->editColumn('created_at', function ($item) {
+                if (!$item->created_at) {
                     return '-';
                 }
 
-                $date = \Carbon\Carbon::parse($warehouse->created_at);
+                $date = \Carbon\Carbon::parse($item->created_at);
 
                 return $date->diffForHumans();
-            })
-            ->rawColumns(['action']);
+            });
+           
     }
 
     /**
      * Get the query source of dataTable.
      *
-     * @return QueryBuilder<category>
+     * @return QueryBuilder<items>
      */
-    public function query(category $model): QueryBuilder
+    public function query(items $model): QueryBuilder
     {
-        return $model->newQuery();
+        $query= $model->newQuery()->where('quantity','<',15);
+        return $query;
     }
 
     /**
@@ -67,7 +55,7 @@ class categoryDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('category-table')
+                    ->setTableId('stock-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->orderBy(1)
@@ -90,13 +78,11 @@ class categoryDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('name'),
+            Column::make('code'),
+            Column::make('category'),
             Column::make('description'),
+            Column::make('quantity'),
             Column::make('created_at'),
-            Column::computed('action')
-                ->exportable(false)
-                ->printable(false)
-                ->width(60)
-                ->addClass('text-center'),
         ];
     }
 
@@ -105,6 +91,6 @@ class categoryDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'category_' . date('YmdHis');
+        return 'Stock_' . date('YmdHis');
     }
 }

@@ -5,7 +5,7 @@ $(document).ready(function () {
         },
     });
 
-    $("#createWareForm").on("submit", function (e) {
+    $("#createCategoryForm").on("submit", function (e) {
         e.preventDefault();
         $(".invalid-feedback").remove();
         $(".is-invalid").removeClass("is-invalid");
@@ -30,12 +30,12 @@ $(document).ready(function () {
             success: function (response) {
                 Swal.fire({
                     title: "Success",
-                    text: "The warehouse has been Created successfully",
+                    text: "The category has been Created successfully",
                     icon: "success",
                     showCloseButton: false,
                 }).then(() => {
-                    $("#createWarehouseModal").modal("hide");
-                    $("#warehouse-table").DataTable().ajax.reload();
+                    $("#createCategoryModal").modal("hide");
+                    $("#category-table").DataTable().ajax.reload();
                 });
             },
             error: function (xhr) {
@@ -69,19 +69,16 @@ $(document).on("click", ".update-user", function (e) {
         let id = $(this).data("id");
 
         $.ajax({
-            url: "/warehouse/edit/" + id,
+            url: "/category/edit/" + id,
             method: "GET",
             dataType: "json",
             success: function (response) {
                 // Populate form fields
-                $("#editWareId").val(response.warehouse.id);
-                $("#edit_name").val(response.warehouse.name);
-                $("#edit_location").val(response.warehouse.location);
-                $("#edit_manager_id").val(response.warehouse.manager_id);
-                $("#edit_description").val(response.warehouse.description);
-                $("#edit_Status").val(response.warehouse.is_active);
+                $("#editCategoryId").val(response.category.id);
+                $("#edit_name").val(response.category.name);
+                $("#edit_description").val(response.category.description);
 
-                $("#editWareModal").modal("show");
+                $("#editCategoryModal").modal("show");
             },
             error: function (response) {
                 Swal.fire({
@@ -95,13 +92,13 @@ $(document).on("click", ".update-user", function (e) {
     });
 
 
-$("#editWareForm").on("submit", function (e) {
+$("#editCategoryForm").on("submit", function (e) {
         e.preventDefault();
-        let id = $("#editWareId").val();
+        let id = $("#editCategoryId").val();
         var formData = new FormData(this);
 
         $.ajax({
-            url: "/warehouse/update/" + id,
+            url: "/category/update/" + id,
             type: "POST",
             data: formData,
             processData: false,
@@ -113,12 +110,12 @@ $("#editWareForm").on("submit", function (e) {
                 if (response) {
                     Swal.fire({
                         title: "Success",
-                        text: "The warehouse has been Updated successfully",
+                        text: "The category has been Updated successfully",
                         icon: "success",
                         showCloseButton: false,
                     }).then(() => {
-                        $("#editWareModal").modal("hide");
-                        $("#warehouse-table").DataTable().ajax.reload();
+                        $("#editCategoryModal").modal("hide");
+                        $("#category-table").DataTable().ajax.reload();
                     });
                 }
             },
@@ -126,7 +123,7 @@ $("#editWareForm").on("submit", function (e) {
         });
     });
 
-$("#warehouse-table").on("submit", ".delete-form", function (e) {
+$("#category-table").on("submit", ".delete-form", function (e) {
         e.preventDefault();
 
         Swal.fire({
@@ -155,7 +152,7 @@ $("#warehouse-table").on("submit", ".delete-form", function (e) {
                                 icon: "success",
                                 showCloseButton: false,
                             }).then(() => {
-                                $("#warehouse-table").DataTable().ajax.reload();
+                                $("#category-table").DataTable().ajax.reload();
                             });
                         
                     },

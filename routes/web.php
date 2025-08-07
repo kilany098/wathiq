@@ -11,6 +11,7 @@ use App\Http\Controllers\Inventory\{
 WarehouseController,
 CategoryController,
 ItemController,
+StockController,
 TransactionController
 };    
 
@@ -74,8 +75,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/update/{id}', [TransactionController::class, 'update'])->name('transaction.update');
     Route::delete('/delete/{id}', [TransactionController::class, 'delete'])->name('transaction.delete');
     });
-
-
+    //Stock Panel
+    Route::get('/min_stock', [StockController::class, 'index'])->name('stock.index');
 
 });
 
