@@ -87,7 +87,7 @@ class userDataTable extends DataTable
             ->setTableId('user-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->orderBy(1)
+            ->orderBy(0)
             ->selectStyleSingle()
             ->buttons([
                 Button::make('excel'),

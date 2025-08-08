@@ -24,7 +24,6 @@ class ItemController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'category_id' => 'required',
-            'quantity'=>'required|numeric|min:1',
         ]);
 
         // Create new user
@@ -33,7 +32,6 @@ class ItemController extends Controller
             'name' => $validated['name'],
             'description'=> $validated['description'],
             'category_id'=> $validated['category_id'],
-            'quantity'=>$validated['quantity'],
         ]);
         // Return response
         return response()->json(['message' => 'Item created successfully', 'data' => $item], 201);
@@ -54,7 +52,6 @@ class ItemController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'category_id' => 'required',
-            'quantity'=>'required|numeric|min:1',
         ]);
 
         // Update user attributes
@@ -62,7 +59,6 @@ class ItemController extends Controller
         $item->name = $validated['name'];
         $item->description = $validated['description'];
         $item->category_id = $validated['category_id'];
-        $item->quantity = $validated['quantity'];
         // Update password only if provided
         $item->save();
         return response()->json(['message' => 'Item updated successfully'], 200);

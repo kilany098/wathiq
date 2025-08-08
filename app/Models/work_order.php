@@ -17,4 +17,7 @@ class work_order extends Model
     {
         return $this->belongsTo(contract::class, 'contract_id');
     }
+    public function transactions(){
+        return $this->hasMany(transaction::class);
+    }
 }

@@ -59,6 +59,7 @@ class warehouseDataTable extends DataTable
                 return $date->diffForHumans();
             })
             ->rawColumns(['action', 'status']);
+            
     }
 
     /**
@@ -80,7 +81,7 @@ class warehouseDataTable extends DataTable
                     ->setTableId('warehouse-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->orderBy(1)
+                    ->orderBy(0)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),

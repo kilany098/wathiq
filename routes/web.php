@@ -71,9 +71,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('transaction')->group(function(){
     Route::get('/', [TransactionController::class, 'index'])->name('transaction.index');
     Route::post('/create', [TransactionController::class, 'store'])->name('transaction.create');
-    Route::get('/edit/{id}', [TransactionController::class, 'edit'])->name('transaction.edit');
-    Route::put('/update/{id}', [TransactionController::class, 'update'])->name('transaction.update');
-    Route::delete('/delete/{id}', [TransactionController::class, 'delete'])->name('transaction.delete');
     });
     //Stock Panel
     Route::get('/min_stock', [StockController::class, 'index'])->name('stock.index');

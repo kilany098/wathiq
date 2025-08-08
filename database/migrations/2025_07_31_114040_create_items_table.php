@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->foreignId('category_id')->constrained('categories');
-            $table->decimal('quantity', 15, 2)->default(0);
             $table->timestamps();
         });
     }

@@ -73,7 +73,7 @@ class itemDataTable extends DataTable
                     ->setTableId('item-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->orderBy(1)
+                    ->orderBy(0)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
@@ -96,7 +96,6 @@ class itemDataTable extends DataTable
             Column::make('code'),
             Column::make('category'),
             Column::make('description'),
-            Column::make('quantity'),
             Column::make('created_at'),
             Column::computed('action')
                 ->exportable(false)

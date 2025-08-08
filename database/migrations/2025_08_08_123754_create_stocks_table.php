@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('items', function (Blueprint $table) {
-             $table->foreignId('warehouse_id')->constrained('warehouses');
+        Schema::create('stocks', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('item_id')->constrained('items');
+            $table->foreignId('warehouse_id')->constrained('warehouses');
+            $table->decimal('quantity', 15, 2)->default(0);
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('items', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('stocks');
     }
 };

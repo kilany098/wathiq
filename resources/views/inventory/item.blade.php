@@ -57,12 +57,6 @@
                         <input type="text" class="form-control" id="edit_description" name="description" required>
                     </div>
 
-
-                    <div class="mb-3 col-md-12">
-                    <label for="quantity" class="form-label">Quantity</label>
-                    <input type="number" class="form-control" id="edit_quantity" name="quantity" required>
-                    </div>
-
                     <div class="mb-3 col-md-12">
                         <label for="category_id" class="form-label">Category</label>
                         <select class="form-control" id="edit_category_id" name="category_id" required>

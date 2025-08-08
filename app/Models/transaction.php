@@ -21,4 +21,7 @@ class transaction extends Model
     {
         return $this->belongsTo(items::class, 'item_id');
     }
+    public function order(){
+        return $this->belongsTo(work_order::class,'related_order_id');
+    }
 }

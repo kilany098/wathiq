@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\stock;
+use App\Models\transaction;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,38 +12,51 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class StockDataTable extends DataTable
+class transactionDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
      *
-     * @param QueryBuilder<stock> $query Results from query() method.
+     * @param QueryBuilder<transaction> $query Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
-            ->addColumn('item', function ($stock) {
-                return $stock->item->name;
+             ->addColumn('item', function ($transaction) {
+                return $transaction->item->name;
             })
-             ->addColumn('code', function ($stock) {
-                return $stock->item->code;
+             ->addColumn('warehouse', function ($transaction) {
+                return $transaction->warehouse->name;
             })
-            ->addColumn('warehouse', function ($stock) {
-                return $stock->warehouse->name;
+             ->addColumn('order_number', function ($transaction) {
+                if($transaction->order == null){
+                    return '-';
+                }
+                return $transaction->order->order_number;
+            })
+            ->addColumn('created_by', function ($transaction) {
+                return $transaction->creator->name;
+            })
+            ->editColumn('created_at', function ($transaction) {
+                if (!$transaction->created_at) {
+                    return '-';
+                }
+
+                $date = \Carbon\Carbon::parse($transaction->created_at);
+
+                return $date->diffForHumans();
             });
-           
     }
 
     /**
      * Get the query source of dataTable.
      *
-     * @return QueryBuilder<stock>
+     * @return QueryBuilder<transaction>
      */
-    public function query(stock $model): QueryBuilder
+    public function query(transaction $model): QueryBuilder
     {
-        $query= $model->newQuery()->where('quantity','<',15);
-        return $query;
+        return $model->newQuery();
     }
 
     /**
@@ -52,10 +65,10 @@ class StockDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('stock-table')
+                    ->setTableId('transaction-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->orderBy(4)
+                    ->orderBy(0)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
@@ -75,9 +88,13 @@ class StockDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('item'),
-            Column::make('code'),
             Column::make('warehouse'),
+            Column::make('transaction_type'),
             Column::make('quantity'),
+            Column::make('order_number'),
+            Column::make('created_by'),
+            Column::make('notes'),
+            Column::make('created_at'),
         ];
     }
 
@@ -86,6 +103,6 @@ class StockDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Stock_' . date('YmdHis');
+        return 'transaction_' . date('YmdHis');
     }
 }

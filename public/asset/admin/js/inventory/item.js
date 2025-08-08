@@ -34,6 +34,7 @@ $(document).ready(function () {
                     icon: "success",
                     showCloseButton: false,
                 }).then(() => {
+                    $('#createItemForm')[0].reset();
                     $("#createItemModal").modal("hide");
                     $("#item-table").DataTable().ajax.reload();
                 });
@@ -79,7 +80,6 @@ $(document).on("click", ".update-user", function (e) {
                 $("#edit_code").val(response.item.code);
                 $("#edit_category_id").val(response.item.category_id);
                 $("#edit_description").val(response.item.description);
-                $("#edit_quantity").val(response.item.quantity);
 
                 $("#editItemModal").modal("show");
             },
