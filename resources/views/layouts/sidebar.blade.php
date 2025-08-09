@@ -101,7 +101,7 @@
                 <div class="collapse" id="sidebarOperations">
                     <ul class="sub-menu">
                         <li class="side-nav-item">
-                            <a href="#" class="side-nav-link">
+                            <a href="{{route('contract.index')}}" class="side-nav-link">
                                 <span class="menu-text">Contracts</span>
                             </a>
                         </li>

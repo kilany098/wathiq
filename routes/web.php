@@ -14,6 +14,10 @@ ItemController,
 StockController,
 TransactionController
 };    
+use App\Http\Controllers\Operation\{
+ContractController,
+
+};    
 
 Route::get('/', function () {
     return view('welcome');
@@ -74,6 +78,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
     //Stock Panel
     Route::get('/min_stock', [StockController::class, 'index'])->name('stock.index');
+    //Contract Panel
+    Route::prefix('contract')->group(function(){
+    Route::get('/',[ContractController::class,'index'])->name('contract.index');
+    Route::post('/create', [ContractController::class, 'store'])->name('contract.create');
+    Route::get('/edit/{id}', [ContractController::class, 'edit'])->name('contract.edit');
+    Route::put('/update/{id}', [ContractController::class, 'update'])->name('contract.update');
+
+    });
+
 
 });
 
