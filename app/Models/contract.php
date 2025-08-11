@@ -17,6 +17,9 @@ class contract extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+    public function operator(){
+         return $this->belongsTo(User::class, 'operated_by');
+    }
 
     public function workOrders()
     {

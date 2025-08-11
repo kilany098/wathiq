@@ -82,4 +82,7 @@ class User extends Authenticatable implements LaratrustUser
     {
         return $this->morphOne(image::class, 'imageable');
     }
+    public function contracts(){
+        return $this->hasMany(contract::class);
+    }
 }

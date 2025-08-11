@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 use App\DataTables\contractDataTable;
 use Illuminate\Support\Facades\Auth;
 use App\Models\{ client,
-   contract
+   contract,
+   User
 };
 class ContractController extends Controller
 {
     public function index(contractDataTable $datatable){
         $clients=client::all();
-         return $datatable->render('operation.contract',compact('clients'));
+        $operators = User::whereHasRole('operation')->get();
+         return $datatable->render('operation.contract',compact('clients','operators'));
     }
 
  public function store(Request $request)
@@ -28,6 +30,7 @@ class ContractController extends Controller
             'total_value' => 'required|numeric|min:1',
             'payment_terms' => 'required|in:monthly,quarterly,annual,custom',
             'terms_and_conditions' => 'required|string|max:255',
+            'operated_by'=>'required',
         ]);
 
 
@@ -43,7 +46,7 @@ class ContractController extends Controller
             'payment_terms' => $validated['payment_terms'],
             'terms_and_conditions' => $validated['terms_and_conditions'],
             'created_by'=>Auth::user()->id,
-
+            'operated_by'=>$validated['operated_by'],
         ]);
         // Return response
         return response()->json(['message' => 'Contract created successfully', 'data' => $contract], 201);
@@ -70,6 +73,7 @@ class ContractController extends Controller
             'payment_terms' => 'required|in:monthly,quarterly,annual,custom',
             'terms_and_conditions' => 'required|string|max:255',
             'status'=>'required|in:draft,active,expired,terminated',
+            'operated_by'=>'required',
         ]);
 
         

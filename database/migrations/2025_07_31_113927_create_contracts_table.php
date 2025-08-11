@@ -23,6 +23,7 @@ return new class extends Migration
             $table->enum('payment_terms', ['monthly', 'quarterly', 'annual', 'custom'])->default('monthly');
             $table->text('terms_and_conditions')->nullable();
             $table->enum('status', ['draft', 'active', 'expired', 'terminated'])->default('draft');
+            $table->foreignId('operated_by')->constrained('users');
             $table->foreignId('created_by')->constrained('users');
             $table->timestamps();
         });

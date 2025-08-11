@@ -5,7 +5,7 @@ $(document).ready(function () {
         },
     });
 
-    $("#createContractForm").on("submit", function (e) {
+    $("#createOrderForm").on("submit", function (e) {
         e.preventDefault();
         $(".invalid-feedback").remove();
         $(".is-invalid").removeClass("is-invalid");
@@ -22,7 +22,7 @@ $(document).ready(function () {
         var formData = new FormData(this);
 
         $.ajax({
-            url: "/contract/create",
+            url: "/work_order/create",
             method: "POST",
             data: formData,
             processData: false,
@@ -30,12 +30,12 @@ $(document).ready(function () {
             success: function (response) {
                 Swal.fire({
                     title: "Success",
-                    text: "The contract has been Created successfully",
+                    text: "The work order has been Created successfully",
                     icon: "success",
                     showCloseButton: false,
                 }).then(() => {
-                    $("#createContractModal").modal("hide");
-                    $("#contract-table").DataTable().ajax.reload();
+                    $("#createOrderModal").modal("hide");
+                    $("#work_order-table").DataTable().ajax.reload();
                 });
             },
             error: function (xhr) {
@@ -96,38 +96,6 @@ $(document).on("click", ".update-user", function (e) {
                     showCloseButton: false,
                 });
             },
-        });
-    });
-
-
-$("#editContractForm").on("submit", function (e) {
-        e.preventDefault();
-        let id = $("#editContractId").val();
-        var formData = new FormData(this);
-
-        $.ajax({
-            url: "/contract/update/" + id,
-            type: "POST",
-            data: formData,
-            processData: false,
-            contentType: false,
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-            success: function (response) {
-                if (response) {
-                    Swal.fire({
-                        title: "Success",
-                        text: "The contract has been Updated successfully",
-                        icon: "success",
-                        showCloseButton: false,
-                    }).then(() => {
-                        $("#editContractModal").modal("hide");
-                        $("#contract-table").DataTable().ajax.reload();
-                    });
-                }
-            },
-            error: function (xhr) {},
         });
     });
 });

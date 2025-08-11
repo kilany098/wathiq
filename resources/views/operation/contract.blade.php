@@ -106,6 +106,16 @@
             </select>
         </div>
 
+        <div class="mb-3 col-md-6">
+                    <label for="operated_by" class="form-label">Operator *</label>
+                    <select class="form-control" id="edit_operated_by" name="operated_by" required>
+                        <option value="">Select Operator</option>
+                        @foreach($operators as $operator)
+                        <option value="{{ $operator->id }}">{{ $operator->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
         <div class="mb-3 col-md-12">
             <label for="edit_terms_and_conditions" class="form-label">Terms and Conditions</label>
             <textarea class="form-control" id="edit_terms_and_conditions" name="terms_and_conditions" rows="4"></textarea>

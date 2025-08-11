@@ -18,6 +18,16 @@
                     </select>
                 </div>
 
+                <div class="mb-3 col-md-6">
+                    <label for="operated_by" class="form-label">Operator *</label>
+                    <select class="form-control" id="operated_by" name="operated_by" required>
+                        <option value="">Select Operator</option>
+                        @foreach($operators as $operator)
+                        <option value="{{ $operator->id }}">{{ $operator->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <!-- Contract Number -->
                 <div class="mb-3 col-md-6">
                     <label for="contract_number" class="form-label">Contract Number *</label>

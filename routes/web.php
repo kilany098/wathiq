@@ -16,7 +16,7 @@ TransactionController
 };    
 use App\Http\Controllers\Operation\{
 ContractController,
-
+OrderController
 };    
 
 Route::get('/', function () {
@@ -86,7 +86,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/update/{id}', [ContractController::class, 'update'])->name('contract.update');
 
     });
-
+    //Work order Panel
+    Route::prefix('work_order')->group(function (){
+    Route::get('/',[OrderController::class,'index'])->name('order.index');
+    Route::post('/create',[OrderController::class,'store'])->name('order.create');
+    Route::get('/edit/{id}',[OrderController::class,'edit'])->name('order.edit');
+    }); 
 
 });
 

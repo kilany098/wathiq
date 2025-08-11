@@ -106,7 +106,7 @@
                             </a>
                         </li>
                         <li class="side-nav-item">
-                            <a href="/admin" class="side-nav-link">
+                            <a href="{{route('order.index')}}" class="side-nav-link">
                                 <span class="menu-text">Work Orders</span>
                             </a>
                         </li>
