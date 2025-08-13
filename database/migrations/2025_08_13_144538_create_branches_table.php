@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('city_id')->constrained('cities');
             $table->foreignId('zone_id')->constrained('zones');
             $table->string('map_link');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

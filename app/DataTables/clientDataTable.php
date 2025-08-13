@@ -57,9 +57,9 @@ class clientDataTable extends DataTable
                         <button class="btn btn-soft-warning align-middle fs-18 update-user" data-id="' . $client->id . '" data-bs-toggle="modal" data-bs-target="#editClientModal">
                             <iconify-icon icon="solar:pen-2-broken"></iconify-icon>
                         </button>
-                        <button class="btn btn-soft-info align-middle fs-18 client_branches" data-id="' . $client->id . '" >
+                        <a class="btn btn-soft-info align-middle fs-18 client_branches" href="/client/' . $client->id .'/branches" >
                         <iconify-icon icon="tabler:building-community"></iconify-icon>
-                        </button>
+                        </a>
                     </div>';
                 return $actionHtml;
             })

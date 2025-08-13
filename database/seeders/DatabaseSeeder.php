@@ -15,7 +15,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
        $this->call(LaratrustSeeder::class);
-        $this->call(UsersTableSeeder::class);
+       $this->call(UsersTableSeeder::class);
+       $this->call(CitiesTableSeeder::class);
+       $this->call(ZonesTableSeeder::class);
         // User::factory(10)->create();
 
         /*User::factory()->create([

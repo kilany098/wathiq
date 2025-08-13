@@ -5,7 +5,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Users\{
     UserController,
-    ClientController
+    ClientController,
+    BranchController
 };
 use App\Http\Controllers\Inventory\{
 WarehouseController,
@@ -46,6 +47,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/edit/{id}', [ClientController::class, 'edit'])->name('client.edit');
     Route::put('/update/{id}', [ClientController::class, 'update'])->name('client.update');
     Route::delete('/delete/{id}', [ClientController::class, 'delete'])->name('client.delete');
+    Route::get('/{id}/branches', [BranchController::class, 'index'])->name('branch.index');
+    Route::post('/branches/create', [BranchController::class, 'store'])->name('branch.create');
+    Route::get('/zones',[BranchController::class, 'getZones'])->name('zones.get');
     });
     //Warehouses Panel
     Route::prefix('warehouse')->group(function(){
