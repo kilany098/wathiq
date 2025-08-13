@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\{ client,
    contract,
    User,
-   work_order
+   work_order,
+   worker
 };
 
 class OrderController extends Controller
@@ -25,7 +26,6 @@ class OrderController extends Controller
         $validated = $request->validate([
             'order_number' => 'required|string|max:50|regex:/^[A-Z0-9\-_]+$/i|unique:work_orders,order_number',
             'contract_id' => 'nullable',
-            'assigned_to' => 'required',
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'priority' => 'required|in:custom,low,medium,high,urgent',
@@ -46,6 +46,22 @@ class OrderController extends Controller
         $work_order = work_order::find($id);
         return response()->json(['work_order' => $work_order], 201);
     }
+
+    public function getWorker($id){
+ $workers=User::whereHas('workers',function($q)use($id){
+    $q->where('order_id',$id);
+ });
+
+        return response()->json(['workers' => $workers], 201);  
+    }
+
+public function createWorker(Request $request,$id){
+worker::firstOrCreate([
+    'order_id'=>$id,
+    'assigned_id'=>$request['assigned_id']
+]);
+return response()->json(['message' => 'Worker added successfuly'], 201);
+}
 
 
 }

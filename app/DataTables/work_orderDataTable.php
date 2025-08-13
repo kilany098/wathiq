@@ -23,9 +23,6 @@ class work_orderDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
-             ->editColumn('assigned_to', function ($work_order) {
-                return $work_order->user->name;
-            })
              ->editColumn('due_date', function ($work_order) {
                 if (!$work_order->due_date) {
                     return '-';
@@ -47,13 +44,13 @@ class work_orderDataTable extends DataTable
             ->addColumn('action', function ($work_order) {
                 $actionHtml = '
                     <div class="d-flex gap-2">
-                        <button class="btn btn-soft-primary align-middle fs-18 add-user" data-id="' . $work_order->id . '" data-bs-toggle="modal" data-bs-target="#editOrderModal">
+                        <button class="btn btn-soft-primary align-middle fs-18 add-user" data-id="' . $work_order->id . '" data-bs-toggle="modal" data-bs-target="#addUserModal">
                             <iconify-icon icon="solar:user-rounded-outline"></iconify-icon>
                         </button>
                         <button class="btn btn-soft-warning align-middle fs-18 update-order" data-id="' . $work_order->id . '" data-bs-toggle="modal" data-bs-target="#editOrderModal">
                             <iconify-icon icon="solar:pen-2-broken"></iconify-icon>
                         </button>
-                        <button class="btn btn-soft-secondary align-middle fs-18 reports-order" data-id="' . $work_order->id . '" data-bs-toggle="modal" data-bs-target="#editOrderModal">
+                        <button class="btn btn-soft-secondary align-middle fs-18 reports-order" data-id="' . $work_order->id . '" >
                             <iconify-icon icon="solar:user-id-outline"></iconify-icon>
                         </button>
                     </div>';
@@ -102,7 +99,6 @@ class work_orderDataTable extends DataTable
             Column::make('id'),
             Column::make('order_number'),
             Column::make('contract_id'),
-            Column::make('assigned_to'),
             Column::make('title'),
             Column::make('description'),
             Column::make('priority'),

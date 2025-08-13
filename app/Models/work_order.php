@@ -20,4 +20,7 @@ class work_order extends Model
     public function transactions(){
         return $this->hasMany(transaction::class);
     }
+    public function workers(){
+        return $this->hasMany(worker::class);
+    }
 }

@@ -26,17 +26,6 @@
                         </select>
                     </div>
 
-                    <!-- Assigned To -->
-                    <div class="mb-3 col-md-6">
-                        <label for="assigned_to" class="form-label">Assigned To *</label>
-                        <select class="form-control" id="assigned_to" name="assigned_to" required>
-                            <option value="">Select User</option>
-                            @foreach($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
                     <!-- Title -->
                     <div class="mb-3 col-md-12">
                         <label for="title" class="form-label">Title *</label>

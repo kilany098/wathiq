@@ -91,6 +91,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/',[OrderController::class,'index'])->name('order.index');
     Route::post('/create',[OrderController::class,'store'])->name('order.create');
     Route::get('/edit/{id}',[OrderController::class,'edit'])->name('order.edit');
+    Route::get('/get/{id}',[OrderController::class,'getWorker'])->name('order.get');
+    Route::post('order/{id}/create',[OrderController::class,'createWorker'])->name('order.create');
     }); 
 
 });

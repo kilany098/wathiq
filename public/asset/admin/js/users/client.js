@@ -24,6 +24,7 @@ $(document).ready(function () {
                     icon: "success",
                     showCloseButton: false,
                 }).then(() => {
+                    $('#createClientForm')[0].reset();
                     $("#createClientModal").modal("hide");
                     $("#client-table").DataTable().ajax.reload();
                 });
@@ -71,8 +72,9 @@ $(document).on("click", ".update-user", function (e) {
                 $("#edit_address").val(response.client.address);
                 $("#edit_tax_number").val(response.client.tax_number);
                 $("#edit_type").val(response.client.type);
-
-
+                $("#edit_contact_phone").val(response.client.contact_phone);
+                $("#edit_status").val(response.client.status);
+                $("#edit_commercial_number").val(response.client.commercial_number);
 
                 $("#editUserModal").modal("show");
             },
@@ -118,50 +120,6 @@ $("#editClientForm").on("submit", function (e) {
         });
     });
 
-$("#client-table").on("submit", ".delete-form", function (e) {
-        e.preventDefault();
-
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                let url = $(this).attr("action");
-                $.ajax({
-                    url: url,
-                    type: "DELETE",
-                    headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                            "content"
-                        ),
-                    },
-                    success: function (response) {
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: response.message,
-                                icon: "success",
-                                showCloseButton: false,
-                            }).then(() => {
-                                $("#client-table").DataTable().ajax.reload();
-                            });
-                        
-                    },
-                    error: function (response) {
-                        Swal.fire({
-                            title: "Error!",
-                            text: "Failed to delete user",
-                            icon: "error",
-                        });
-                    },
-                });
-            }
-        });
-    });
 
 
 });

@@ -32,23 +32,38 @@ class clientDataTable extends DataTable
 
                 return $date->diffForHumans();
             })
+            ->editColumn('tax_number', function ($client) {
+                if (!$client->tax_number) {
+                    return '-';
+                }
+                return $client->tax_number;
+            })
+            ->editColumn('commercial_number', function ($client) {
+                if (!$client->commercial_number) {
+                    return '-';
+                }
+                return $client->commercial_number;
+            })
+            ->editColumn('status', function ($client) {
+                if ($client->status) {
+                    return '<h4><span class="badge badge-soft-success rounded-pill me-1"> active </span></h4>';
+                } else {
+                    return '<h4><span class="badge badge-soft-warning rounded-pill me-1"> not active </span></h4>';
+                }
+            })
             ->addColumn('action', function ($client) {
                 $actionHtml = '
                     <div class="d-flex gap-2">
                         <button class="btn btn-soft-warning align-middle fs-18 update-user" data-id="' . $client->id . '" data-bs-toggle="modal" data-bs-target="#editClientModal">
                             <iconify-icon icon="solar:pen-2-broken"></iconify-icon>
                         </button>
-                        <form class="delete-form" action=' . route('client.delete', $client->id) . ' method="POST" style="display: inline;">
-                            ' . csrf_field() . '
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-soft-danger align-middle fs-18">
-                                <iconify-icon icon="solar:trash-bin-minimalistic-2-broken"></iconify-icon>
-                            </button>
-                        </form>
+                        <button class="btn btn-soft-info align-middle fs-18 client_branches" data-id="' . $client->id . '" >
+                        <iconify-icon icon="tabler:building-community"></iconify-icon>
+                        </button>
                     </div>';
                 return $actionHtml;
             })
-            ->rawColumns(['action']);
+            ->rawColumns(['action','status']);
     }
 
     /**
@@ -70,7 +85,6 @@ class clientDataTable extends DataTable
             ->setTableId('client-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->orderBy(0)
             ->selectStyleSingle()
             ->buttons([
                 Button::make('excel'),
@@ -90,12 +104,14 @@ class clientDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('name'),
-            Column::make('contact_person'),
+            Column::make('contact_phone'),
             Column::make('email'),
             Column::make('phone'),
             Column::make('address'),
             Column::make('tax_number'),
+            Column::make('commercial_number'),
             Column::make('type'),
+            Column::make('status'),
             Column::make('created_at'),
             Column::computed('action')
                 ->exportable(false)

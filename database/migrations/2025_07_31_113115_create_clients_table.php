@@ -14,11 +14,15 @@ return new class extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('contact_person')->nullable();
+            $table->string('contact_phone')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('tax_number')->nullable();
+            $table->string('commercial_number')->nullable();
+            $table->boolean('status')->default(1);
+            $table->string('commercial_register')->nullable();
+            $table->string('personal_id')->nullable();
             $table->enum('type', ['individual', 'company'])->default('company');
             $table->timestamps();
         });

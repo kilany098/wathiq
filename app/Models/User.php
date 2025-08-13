@@ -53,9 +53,9 @@ class User extends Authenticatable implements LaratrustUser
         return $this->hasMany(Contract::class, 'created_by');
     }
 
-    public function workOrdersAssigned()
+    public function workOrders()
     {
-        return $this->hasMany(Work_Order::class, 'assigned_to');
+        return $this->hasMany(work_order::class);
     }
 
     public function employee()
@@ -84,5 +84,9 @@ class User extends Authenticatable implements LaratrustUser
     }
     public function contracts(){
         return $this->hasMany(contract::class);
+    }
+
+    public function workers() {
+        return $this->hasMany(worker::class, 'assigned_id');
     }
 }

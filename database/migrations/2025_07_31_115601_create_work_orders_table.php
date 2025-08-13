@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('order_number')->unique();
             $table->foreignId('contract_id')->nullable()->constrained('contracts');
-            $table->foreignId('assigned_to')->constrained('users');
             $table->string('title');
             $table->text('description');
             $table->enum('priority', ['low', 'medium', 'high', 'urgent'])->default('medium');
