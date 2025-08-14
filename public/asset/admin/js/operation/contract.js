@@ -34,6 +34,7 @@ $(document).ready(function () {
                     icon: "success",
                     showCloseButton: false,
                 }).then(() => {
+                    $('#createContractForm')[0].reset();
                     $("#createContractModal").modal("hide");
                     $("#contract-table").DataTable().ajax.reload();
                 });
@@ -87,6 +88,10 @@ $(document).on("click", ".update-user", function (e) {
                 $("#edit_status").val(response.contract.status);
                 $("#edit_terms_and_conditions").val(response.contract.terms_and_conditions);
                 $("#edit_operated_by").val(response.contract.operated_by);
+                $("#edit_visits").val(response.contract.visits);
+                $("#edit_expected_hours").val(response.contract.expected_hours);
+                $("#edit_type").val(response.contract.type);
+                $("#edit_note").val(response.contract.note);
             },
             error: function (response) {
                 Swal.fire({

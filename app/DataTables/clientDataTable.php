@@ -23,14 +23,8 @@ class clientDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
-            ->editColumn('created_at', function ($client) {
-                if (!$client->created_at) {
-                    return '-';
-                }
-
-                $date = \Carbon\Carbon::parse($client->created_at);
-
-                return $date->diffForHumans();
+            ->addColumn('branches', function ($client) {
+                return count($client->branches);
             })
             ->editColumn('tax_number', function ($client) {
                 if (!$client->tax_number) {
@@ -52,6 +46,7 @@ class clientDataTable extends DataTable
                 }
             })
             ->addColumn('action', function ($client) {
+                if ($client->type == 'company') {
                 $actionHtml = '
                     <div class="d-flex gap-2">
                         <button class="btn btn-soft-warning align-middle fs-18 update-user" data-id="' . $client->id . '" data-bs-toggle="modal" data-bs-target="#editClientModal">
@@ -61,6 +56,14 @@ class clientDataTable extends DataTable
                         <iconify-icon icon="tabler:building-community"></iconify-icon>
                         </a>
                     </div>';
+                }else{
+                  $actionHtml = '
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-soft-warning align-middle fs-18 update-user" data-id="' . $client->id . '" data-bs-toggle="modal" data-bs-target="#editClientModal">
+                            <iconify-icon icon="solar:pen-2-broken"></iconify-icon>
+                        </button>
+                    </div>';  
+                }
                 return $actionHtml;
             })
             ->rawColumns(['action','status']);
@@ -112,7 +115,7 @@ class clientDataTable extends DataTable
             Column::make('commercial_number'),
             Column::make('type'),
             Column::make('status'),
-            Column::make('created_at'),
+            Column::make('branches'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

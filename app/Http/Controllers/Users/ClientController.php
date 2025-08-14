@@ -51,6 +51,7 @@ class ClientController extends Controller
 
         // Create new user
         $client = client::create($validated);
+        
         // Return response
         return response()->json(['message' => 'Client created successfully', 'data' => $client], 201);
     }

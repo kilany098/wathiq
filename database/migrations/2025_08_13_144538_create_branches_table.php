@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('client_id')->constrained('clients');
             $table->string('manager_name');
             $table->string('manager_phone');
+            $table->decimal('visit_price', 15, 2);
             $table->foreignId('city_id')->constrained('cities');
             $table->foreignId('zone_id')->constrained('zones');
             $table->string('map_link');

@@ -50,15 +50,6 @@ class contractDataTable extends DataTable
             ->addColumn('created_by', function ($contract) {
                 return $contract->creator->name;
             })
-            ->editColumn('created_at', function ($contract) {
-                if (!$contract->created_at) {
-                    return '-';
-                }
-
-                $date = \Carbon\Carbon::parse($contract->created_at);
-
-                return $date->diffForHumans();
-            })
             ->addColumn('action', function ($contract) {
                 $actionHtml = '
                     <div class="d-flex gap-2">
@@ -68,7 +59,19 @@ class contractDataTable extends DataTable
                     </div>';
                 return $actionHtml;
             })
-            ->rawColumns(['action']);
+            ->addColumn('files', function ($contract) {
+                $actionHtml = '
+                    <div class="d-flex gap-2">
+                        <a href='. route("contract.pdf", $contract->id) .' target="_blank" class="btn btn-sm btn-soft-warning">
+                       <iconify-icon icon="solar:document-medicine-bold"></iconify-icon>
+                        </a>
+                        <a href='. route("contract.download", $contract->id) .' class="btn btn-sm btn-secondary">
+                       <iconify-icon icon="line-md:download-loop" style="color: white"></iconify-icon>
+                        </a>
+                    </div>';
+                return $actionHtml;
+            })
+            ->rawColumns(['action','status','files']);
     }
 
     /**
@@ -111,17 +114,23 @@ class contractDataTable extends DataTable
             Column::make('id'),
             Column::make('client'),
             Column::make('contract_number'),
-            Column::make('title'),
-            Column::make('description'),
+            Column::make('type'),
             Column::make('start_date'),
             Column::make('end_date'),
             Column::make('total_value'),
+            Column::make('visits'),
+            Column::make('expected_hours'),
             Column::make('payment_terms'),
             Column::make('terms_and_conditions'),
+            Column::make('note'),
             Column::make('status'),
             Column::make('created_by'),
             Column::make('operator'),
-            Column::make('created_at'),
+            Column::computed('files')
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

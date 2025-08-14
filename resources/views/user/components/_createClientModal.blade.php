@@ -50,7 +50,7 @@
             <div class="mb-3 col-md-12" id="comNumberField" style="display: none;">
                 <label for="commercial_number" class="form-label">Commercial Number (10 digits)</label>
                 <input type="text" class="form-control" id="commercial_number" name="commercial_number" 
-                       required pattern="[0-9]{10}" title="Please enter exactly 10 digits">
+                        pattern="[0-9]{10}" title="Please enter exactly 10 digits">
             </div>
 
             <div class="mb-3 col-md-12">

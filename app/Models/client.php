@@ -17,4 +17,7 @@ class client extends Model
     {
         return $this->hasMany(contract::class);
     }
+    public function branches(){
+        return $this->hasMany(branch::class);
+    }
 }

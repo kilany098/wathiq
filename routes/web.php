@@ -50,6 +50,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/{id}/branches', [BranchController::class, 'index'])->name('branch.index');
     Route::post('/branches/create', [BranchController::class, 'store'])->name('branch.create');
     Route::get('/zones',[BranchController::class, 'getZones'])->name('zones.get');
+    Route::get('/branches/edit/{id}', [BranchController::class, 'edit'])->name('branch.edit');
+    Route::put('/branches/update/{id}', [BranchController::class, 'update'])->name('branch.update');
     });
     //Warehouses Panel
     Route::prefix('warehouse')->group(function(){
@@ -88,7 +90,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/create', [ContractController::class, 'store'])->name('contract.create');
     Route::get('/edit/{id}', [ContractController::class, 'edit'])->name('contract.edit');
     Route::put('/update/{id}', [ContractController::class, 'update'])->name('contract.update');
-
+    Route::get('/{id}/pdf', [ContractController::class, 'showPdf'])->name('contract.pdf');
+    Route::get('/{id}/pdf/download', [ContractController::class, 'download'])->name('contract.download');
     });
     //Work order Panel
     Route::prefix('work_order')->group(function (){

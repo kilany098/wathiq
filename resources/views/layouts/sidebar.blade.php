@@ -40,13 +40,6 @@
                 </a>
             </li>
 
-            <li class="side-nav-item">
-                <a href="{{route('client.index')}}" class="side-nav-link">
-                    <span class="menu-icon"><i data-lucide="contact" class="w-5 h-5 text-blue-500"></i></span>
-                    <span class="menu-text"> Clients </span>
-                </a>
-            </li>
-
             <li class="side-nav-title">Manage Inventory</li>
 
             <li class="side-nav-item">
@@ -89,6 +82,33 @@
             </li>
 
 
+            <li class="side-nav-title">Manage Sales</li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarSales" aria-expanded="false" aria-controls="sidebarOperations"
+                    class="side-nav-link">
+                    <span class="menu-icon"><i data-lucide="trending-up" class="w-5 h-5 text-blue-500"></i></span>
+                    <span class="menu-text">Sales</span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarSales">
+                    <ul class="sub-menu">
+                        <li class="side-nav-item">
+                            <a href="{{route('client.index')}}" class="side-nav-link">
+                                <span class="menu-text">Clients</span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="{{route('contract.index')}}" class="side-nav-link">
+                                <span class="menu-text">Contracts</span>
+                                <span class="badge bg-danger rounded">{{$stock_min}} New</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
             <li class="side-nav-title">Manage Operations</li>
 
             <li class="side-nav-item">
@@ -101,11 +121,6 @@
                 <div class="collapse" id="sidebarOperations">
                     <ul class="sub-menu">
                         <li class="side-nav-item">
-                            <a href="{{route('contract.index')}}" class="side-nav-link">
-                                <span class="menu-text">Contracts</span>
-                            </a>
-                        </li>
-                        <li class="side-nav-item">
                             <a href="{{route('order.index')}}" class="side-nav-link">
                                 <span class="menu-text">Work Orders</span>
                             </a>
@@ -113,6 +128,7 @@
                     </ul>
                 </div>
             </li>
+
 
             {{-- <li class="side-nav-title">Settings</li>
             <li class="side-nav-item">
