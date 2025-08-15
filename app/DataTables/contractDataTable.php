@@ -47,11 +47,34 @@ class contractDataTable extends DataTable
 
                 return $date->format('d/m/Y');
             })
+            ->editColumn('status', function ($contract) {
+                if ($contract->status == 'new') {
+                    return '<h4><span class="badge badge-soft-danger rounded-pill me-1"> new </span></h4>';
+                } elseif($contract->status == 'active') {
+                    return '<h4><span class="badge badge-soft-success rounded-pill me-1"> active </span></h4>';
+                }elseif($contract->status == 'expired') {
+                    return '<h4><span class="badge badge-soft-warning rounded-pill me-1"> expired </span></h4>';
+                }elseif($contract->status == 'terminated') {
+                    return '<h4><span class="badge badge-soft-warning rounded-pill me-1"> terminated </span></h4>';
+                }
+            })
             ->addColumn('created_by', function ($contract) {
                 return $contract->creator->name;
             })
             ->addColumn('action', function ($contract) {
+                if($contract->status == 'new'){
                 $actionHtml = '
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-soft-warning align-middle fs-18 update-user" data-id="' . $contract->id . '" data-bs-toggle="modal" data-bs-target="#editContractModal">
+                            <iconify-icon icon="solar:pen-2-broken"></iconify-icon>
+                        </button>
+                        <a class="btn btn-soft-info align-middle fs-18 contract-visits" data-id="' . $contract->id . '" href='.route("allocation.index",$contract->id ).'>
+                            <iconify-icon icon="solar:eye-broken"></iconify-icon>
+                        </a>
+                    </div>';
+                    return $actionHtml;
+                    }
+                     $actionHtml = '
                     <div class="d-flex gap-2">
                         <button class="btn btn-soft-warning align-middle fs-18 update-user" data-id="' . $contract->id . '" data-bs-toggle="modal" data-bs-target="#editContractModal">
                             <iconify-icon icon="solar:pen-2-broken"></iconify-icon>
@@ -60,6 +83,9 @@ class contractDataTable extends DataTable
                 return $actionHtml;
             })
             ->addColumn('files', function ($contract) {
+                if($contract->status == 'new'){
+                    return '-';
+                }
                 $actionHtml = '
                     <div class="d-flex gap-2">
                         <a href='. route("contract.pdf", $contract->id) .' target="_blank" class="btn btn-sm btn-soft-warning">

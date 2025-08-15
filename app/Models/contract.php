@@ -30,4 +30,7 @@ class contract extends Model
     {
         return $this->hasMany(Invoice::class);
     }
+    public function visit_schedules(){
+    return $this->hasMany(visit_schedule::class);
+    }
 }

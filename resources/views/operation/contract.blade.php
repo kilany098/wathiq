@@ -33,10 +33,16 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="editContractModalLabel">Edit Contract</h5>
+                <h5 class="modal-title" id="editContractModalLabel">Edit Contract </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                
+                <div class="alert alert-warning mb-4">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong>Important:</strong> Modifying the contract at this stage will require the operations team to reassess and potentially reallocate all scheduled visits.
+                </div>
+                
                 <form id="editContractForm" class="row g-3">
                     @csrf
                     @method('PUT')
@@ -80,16 +86,6 @@
                                     </select>
                                 </div>
 
-                                <!-- New Status Field -->
-                                <div class="mb-3">
-                                    <label for="edit_status" class="form-label">Status *</label>
-                                    <select class="form-select" id="edit_status" name="status" required>
-                                        <option value="draft">draft</option>
-                                        <option value="active">active</option>
-                                        <option value="expired">expired</option>
-                                        <option value="terminated">terminated</option>
-                                    </select>
-                                </div>
                             </div>
                         </div>
                     </div>

@@ -27,7 +27,6 @@ class ContractController extends Controller
             'type'=>'required|in:Pest Control,Agricultural,Industrial,Other',
             'start_date' => 'required|date|after_or_equal:today',
             'end_date' => 'required|date|after:start_date',
-            'total_value' => 'required|numeric|min:1',
             'visits'=>'required|numeric|min:1',
             'expected_hours'=>'required|numeric|min:1',
             'payment_terms' => 'required|in:monthly,quarterly,annual,custom',
@@ -47,7 +46,6 @@ class ContractController extends Controller
             'expected_hours' => $validated['expected_hours'],
             'start_date' => $validated['start_date'],
             'end_date' => $validated['end_date'],
-            'total_value' => $validated['total_value'],
             'payment_terms' => $validated['payment_terms'],
             'terms_and_conditions' => $validated['terms_and_conditions'],
             'note' => $validated['note'],
@@ -73,17 +71,15 @@ class ContractController extends Controller
             'type'=>'required|in:Pest Control,Agricultural,Industrial,Other',
             'start_date' => 'required|date|after_or_equal:today',
             'end_date' => 'required|date|after:start_date',
-            'total_value' => 'required|numeric|min:1',
             'visits'=>'required|numeric|min:1',
             'expected_hours'=>'required|numeric|min:1',
             'payment_terms' => 'required|in:monthly,quarterly,annual,custom',
             'terms_and_conditions' => 'required|string|max:255',
-            'status'=>'required|in:draft,active,expired,terminated',
             'note'=>'nullable|string|max:255',
             'operated_by'=>'required',
         ]);
 
-        
+        $validated['status']='new';
         $contract->update($validated);
         
         return response()->json(['message' => 'Contract updated successfully'], 200);

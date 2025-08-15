@@ -89,6 +89,8 @@ $(document).on("click", ".update-user", function (e) {
                 $("#editBranchId").val(response.branch.id);
                 $("#edit_manager_name").val(response.branch.manager_name);
                 $("#edit_manager_phone").val(response.branch.manager_phone);
+                $("#edit_visit_price").val(response.branch.visit_price);
+                $("#edit_name").val(response.branch.name);
                 $("#edit_city_id").val(response.branch.city_id);
                 $("#edit_map_link").val(response.branch.map_link);
                 $("#edit_status").val(response.branch.status);

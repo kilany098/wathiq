@@ -19,5 +19,7 @@ public function zone(){
 public function city(){
     return $this->belongsTo(city::class,'city_id');
 }
-
+public function visit_schedules(){
+    return $this->hasMany(visit_schedule::class);
+}
 }

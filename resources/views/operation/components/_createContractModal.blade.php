@@ -80,14 +80,6 @@
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label for="total_value" class="form-label">Total Value *</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">$</span>
-                                        <input type="number" class="form-control" id="total_value" name="total_value" min="1" step="0.01" required>
-                                    </div>
-                                </div>
-                                
-                                <div class="mb-3">
                                     <label for="payment_terms" class="form-label">Payment Terms *</label>
                                     <select class="form-select" id="payment_terms" name="payment_terms" required>
                                         <option value="monthly">Monthly</option>

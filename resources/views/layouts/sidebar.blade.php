@@ -101,7 +101,7 @@
                         <li class="side-nav-item">
                             <a href="{{route('contract.index')}}" class="side-nav-link">
                                 <span class="menu-text">Contracts</span>
-                                <span class="badge bg-danger rounded">{{$stock_min}} New</span>
+                                <span class="badge bg-danger rounded">{{$new_contract}} New</span>
                             </a>
                         </li>
                     </ul>
@@ -120,6 +120,11 @@
                 </a>
                 <div class="collapse" id="sidebarOperations">
                     <ul class="sub-menu">
+                        <li class="side-nav-item">
+                            <a href="{{route('attribution.index')}}" class="side-nav-link">
+                                <span class="menu-text">Attributions</span>
+                            </a>
+                        </li>
                         <li class="side-nav-item">
                             <a href="{{route('order.index')}}" class="side-nav-link">
                                 <span class="menu-text">Work Orders</span>

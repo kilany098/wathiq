@@ -112,6 +112,7 @@ public function forClient($client_id)
     {
         return [
             Column::make('id'),
+            Column::make('name'),
             Column::make('manager_name'),
             Column::make('manager_phone'),
             Column::make('city'),

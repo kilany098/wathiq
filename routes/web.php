@@ -17,8 +17,12 @@ TransactionController
 };    
 use App\Http\Controllers\Operation\{
 ContractController,
-OrderController
+OrderController,
+AllocationController
 };    
+use App\Http\Controllers\SupOp\{
+    AttributionController
+};
 
 Route::get('/', function () {
     return view('welcome');
@@ -92,7 +96,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/update/{id}', [ContractController::class, 'update'])->name('contract.update');
     Route::get('/{id}/pdf', [ContractController::class, 'showPdf'])->name('contract.pdf');
     Route::get('/{id}/pdf/download', [ContractController::class, 'download'])->name('contract.download');
+    //Allocation order panel
+    Route::get('/{id}/allocation',[AllocationController::class,'index'])->name('allocation.index');
+    Route::post('/allocation/create', [AllocationController::class, 'store'])->name('allocation.create');
     });
+    
+    //Attribution Panel
+     Route::prefix('attribution')->group(function (){
+     Route::get('/',[AttributionController::class,'index'])->name('attribution.index');
+     });
+
     //Work order Panel
     Route::prefix('work_order')->group(function (){
     Route::get('/',[OrderController::class,'index'])->name('order.index');

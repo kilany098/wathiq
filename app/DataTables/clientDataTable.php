@@ -24,7 +24,7 @@ class clientDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->setRowId('id')
             ->addColumn('branches', function ($client) {
-                return count($client->branches);
+                return $client->branches()->where('status', true)->count();
             })
             ->editColumn('tax_number', function ($client) {
                 if (!$client->tax_number) {

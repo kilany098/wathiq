@@ -24,6 +24,17 @@
                             <input type="tel" class="form-control" id="manager_phone" name="manager_phone" required>
                         </div>
                         
+                        <div class="col-md-6 mb-3">
+                            <label for="name" class="form-label">Branch Name*</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                        <label for="visit_price" class="form-label">Visit Price *</label>
+                        <input type="number" class="form-control" id="visit_price" name="visit_price" min="1" step="0.01" required>
+                        </div>
+
+
                         <!-- Location Information -->
                         <div class="col-md-6 mb-3">
                             <label for="city_id" class="form-label">City*</label>

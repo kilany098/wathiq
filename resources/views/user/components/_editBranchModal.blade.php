@@ -26,6 +26,12 @@
                                title="Saudi number format: 05XXXXXXXX or +9665XXXXXXXX">
                     </div>
 
+                    <div class="col-md-12 mb-3">
+                            <label for="name" class="form-label">Branch Name*</label>
+                            <input type="text" class="form-control" id="edit_name" name="name" required>
+                        </div>
+
+
                     <div class="mb-3 col-md-6">
                         <label for="edit_city_id" class="form-label">City*</label>
                         <select class="form-control" id="edit_city_id" name="city_id" required>
@@ -43,19 +49,25 @@
                         </select>
                     </div>
 
-                    <div class="mb-3 col-md-12">
-                        <label for="edit_map_link" class="form-label">Map Link*</label>
-                        <input type="url" class="form-control" id="edit_map_link" name="map_link" 
-                               required placeholder="https://maps.google.com/...">
+                    <div class="col-md-6 mb-3">
+                        <label for="visit_price" class="form-label">Visit Price *</label>
+                        <input type="number" class="form-control" id="edit_visit_price" name="visit_price" min="1" step="0.01" required>
                     </div>
 
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="edit_status" class="form-label">Status</label>
                         <select class="form-control" id="edit_status" name="status">
                             <option value="1">Active</option>
                             <option value="0">Inactive</option>
                         </select>
                     </div>
+
+                    <div class="mb-3 col-md-12">
+                        <label for="edit_map_link" class="form-label">Map Link*</label>
+                        <input type="url" class="form-control" id="edit_map_link" name="map_link" 
+                               required placeholder="https://maps.google.com/...">
+                    </div>
+
                 </form>
             </div>
             <div class="modal-footer">
