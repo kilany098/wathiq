@@ -36,7 +36,7 @@ class transactionDataTable extends DataTable
                 return $transaction->order->order_number;
             })
             ->addColumn('created_by', function ($transaction) {
-                return $transaction->creator->name;
+                return $transaction->creator->full_name;
             })
             ->editColumn('created_at', function ($transaction) {
                 if (!$transaction->created_at) {

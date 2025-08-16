@@ -107,7 +107,7 @@ class userDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('image'),
-            Column::make('name'),
+            Column::make('full_name'),
             Column::make('email'),
             Column::make('phone'),
             Column::make('role'),

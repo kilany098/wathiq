@@ -40,7 +40,7 @@ class warehouseDataTable extends DataTable
                 return $actionHtml;
             })
             ->addColumn('manager', function ($warehouse) {
-                return $warehouse->user->name;
+                return $warehouse->user->full_name;
             })
             ->addColumn('status', function ($warehouse) {
                 if ($warehouse->is_active) {

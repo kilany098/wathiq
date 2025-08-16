@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class work_orderDataTable extends DataTable
+class assign_orderDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -30,32 +30,23 @@ public function forSchedule($schedule_id)
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
-             ->addColumn('start_time', function ($work_order) {
-                if (!$work_order->start_date) {
+             ->editColumn('due_date', function ($work_order) {
+                if (!$work_order->due_date) {
                     return '-';
                 }
 
-                $date = \Carbon\Carbon::parse($work_order->start_date);
+                $date = \Carbon\Carbon::parse($work_order->due_date);
 
-                return $date->format('d/m H:i'); // Example: "25/12 14:30"
+                return $date->format('d/m/Y');
             })
-            ->addColumn('end_time', function ($work_order) {
-                if (!$work_order->end_date) {
+             ->editColumn('completed_at', function ($work_order) {
+                if (!$work_order->completed_at) {
                     return '-';
                 }
 
-                $date = \Carbon\Carbon::parse($work_order->end_date);
+                $date = \Carbon\Carbon::parse($work_order->completed_at);
 
-                return $date->format('d/m H:i'); // Example: "25/12 14:30"
-            })
-            ->editColumn('assigned_to', function ($work_order) {
-                return $work_order->assigned->full_name; // Example: "25/12 14:30"
-            })
-            ->editColumn('completion_notes', function ($work_order) {
-                if (!$work_order->completion_notes) {
-                    return '-';
-                }
-                return $work_order->completion_notes; // Example: "25/12 14:30"
+                return $date->format('d/m/Y');
             })
             ->addColumn('action', function ($work_order) {
                 $actionHtml = '
@@ -72,7 +63,7 @@ public function forSchedule($schedule_id)
                     </div>';
                 return $actionHtml;
             })
-            ->rawColumns(['action']);
+             ->rawColumns(['action']);
     }
 
     /**
@@ -97,10 +88,10 @@ public function forSchedule($schedule_id)
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('work_order-table')
+                    ->setTableId('assign_order-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->orderBy(0)
+                    ->orderBy(1)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
@@ -120,12 +111,13 @@ public function forSchedule($schedule_id)
         return [
             Column::make('id'),
             Column::make('order_number'),
+            Column::make('branch_name'),
             Column::make('title'),
             Column::make('description'),
             Column::make('priority'),
             Column::make('status'),
-            Column::make('start_time'),
-            Column::make('end_time'),
+            Column::make('start_date'),
+            Column::make('end_date'),
             Column::make('assigned_to'),
             Column::make('completion_notes'),
             Column::computed('action')
@@ -141,6 +133,6 @@ public function forSchedule($schedule_id)
      */
     protected function filename(): string
     {
-        return 'work_order_' . date('YmdHis');
+        return 'assign_order_' . date('YmdHis');
     }
 }

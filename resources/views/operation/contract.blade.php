@@ -70,7 +70,7 @@
                                     <select class="form-select" id="edit_operated_by" name="operated_by" required>
                                         <option value="">Select Operator</option>
                                         @foreach($operators as $operator)
-                                        <option value="{{ $operator->id }}">{{ $operator->name }}</option>
+                                        <option value="{{ $operator->id }}">{{ $operator->full_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

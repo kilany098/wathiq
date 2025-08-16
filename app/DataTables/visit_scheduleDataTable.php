@@ -26,9 +26,9 @@ class visit_scheduleDataTable extends DataTable
             ->addColumn('action', function ($visit) {
                 $actionHtml = '
                     <div class="d-flex gap-2">
-                        <button class="btn btn-soft-primary align-middle fs-18 add-user" data-id="' . $visit->id . '" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                        <a class="btn btn-soft-primary align-middle fs-18 add-user" href='.route('assign.index',$visit->id).' >
                             <iconify-icon icon="solar:user-rounded-outline"></iconify-icon>
-                        </button>
+                        </a>
                     </div>';
                 return $actionHtml;
             })
@@ -44,6 +44,9 @@ class visit_scheduleDataTable extends DataTable
     
     // Format to show Arabic month name
             return $date->translatedFormat('F');
+            })
+            ->addColumn('branch', function ($visit) {
+                return $visit->branch->name;
             })
             ->addColumn('city', function ($visit) {
                 return $visit->branch->city->name;
@@ -65,6 +68,26 @@ class visit_scheduleDataTable extends DataTable
                 $date = \Carbon\Carbon::parse($visit->created_at);
 
                 return $date->diffForHumans();
+            })
+             ->filterColumn('company', function($query, $keyword) {
+                $query->whereHas('contract.client', function($q) use ($keyword) {
+                    $q->where('name', 'like', "%{$keyword}%");
+                });
+            })
+            ->filterColumn('branch', function($query, $keyword) {
+                $query->whereHas('branch', function($q) use ($keyword) {
+                    $q->where('name', 'like', "%{$keyword}%");
+                });
+            })
+            ->filterColumn('city', function($query, $keyword) {
+                $query->whereHas('branch.city', function($q) use ($keyword) {
+                    $q->where('name', 'like', "%{$keyword}%");
+                });
+            })
+            ->filterColumn('zone', function($query, $keyword) {
+                $query->whereHas('branch.zone', function($q) use ($keyword) {
+                    $q->where('name', 'like', "%{$keyword}%");
+                });
             })
             ->rawColumns(['action','status']);
     }
@@ -108,9 +131,10 @@ class visit_scheduleDataTable extends DataTable
     {
         return [    
             Column::make('id'),
+            Column::make('company'),
+            Column::make('branch'),
             Column::make('city'),
             Column::make('zone'),
-            Column::make('company'),
             Column::make('month'),
             Column::make('visits_count')
             ->addClass('text-center'),

@@ -27,7 +27,7 @@ class contractDataTable extends DataTable
                 return $contract->client->name;
             })
              ->addColumn('operator', function ($contract) {
-                return $contract->operator->name;
+                return $contract->operator->full_name;
             })
              ->editColumn('start_date', function ($contract) {
                 if (!$contract->start_date) {
@@ -59,7 +59,7 @@ class contractDataTable extends DataTable
                 }
             })
             ->addColumn('created_by', function ($contract) {
-                return $contract->creator->name;
+                return $contract->creator->full_name;
             })
             ->addColumn('action', function ($contract) {
                 if($contract->status == 'new'){

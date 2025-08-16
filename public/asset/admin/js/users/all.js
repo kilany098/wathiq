@@ -34,6 +34,7 @@ $(document).ready(function () {
                     icon: "success",
                     showCloseButton: false,
                 }).then(() => {
+                    $('#createUserForm')[0].reset();
                     $("#createUserModal").modal("hide");
                     $("#user-table").DataTable().ajax.reload();
                 });
@@ -74,7 +75,8 @@ $(document).ready(function () {
             success: function (response) {
                 // Populate form fields
                 $("#editUserId").val(response.user.id);
-                $("#edit_name").val(response.user.name);
+                $("#edit_first_name").val(response.user.first_name);
+                $("#edit_last_name").val(response.user.last_name);
                 $("#edit_email").val(response.user.email);
                 $("#edit_phone").val(response.user.phone);
                 $("#edit_userStatus").val(response.user.is_active);

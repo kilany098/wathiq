@@ -20,7 +20,9 @@ class User extends Authenticatable implements LaratrustUser
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'full_name',
+        'first_name',
+        'last_name',
         'email',
         'phone',
         'password',
@@ -86,7 +88,4 @@ class User extends Authenticatable implements LaratrustUser
         return $this->hasMany(contract::class);
     }
 
-    public function workers() {
-        return $this->hasMany(worker::class, 'assigned_id');
-    }
 }

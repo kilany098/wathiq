@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('branches', function (Blueprint $table) {
             $table->id();
             $table->foreignId('client_id')->constrained('clients');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('manager_name');
             $table->string('manager_phone');
             $table->decimal('visit_price', 15, 2);

@@ -12,8 +12,13 @@
                     @method('PUT')
                     <input type="hidden" id="editUserId" name="id">
                     <div class="mb-3 col-md-12">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="edit_name" name="name">
+                        <label for="first_name" class="form-label">First name</label>
+                        <input type="text" class="form-control" id="edit_first_name" name="first_name">
+                    </div>
+
+                    <div class="mb-3 col-md-12">
+                        <label for="last_name" class="form-label">Last name</label>
+                        <input type="text" class="form-control" id="edit_last_name" name="last_name">
                     </div>
 
                     <div class="mb-3 col-md-12">

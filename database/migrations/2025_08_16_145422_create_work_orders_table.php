@@ -14,15 +14,17 @@ return new class extends Migration
         Schema::create('work_orders', function (Blueprint $table) {
             $table->id();
             $table->string('order_number')->unique();
-            $table->foreignId('contract_id')->nullable()->constrained('contracts');
+            $table->foreignId('schedule_id')->constrained('visit_schedules');
             $table->string('title');
             $table->text('description');
             $table->enum('priority', ['low', 'medium', 'high', 'urgent'])->default('medium');
-            $table->enum('status', ['pending', 'assigned', 'in_progress', 'completed', 'cancelled'])->default('pending');
-            $table->date('due_date')->nullable();
-            $table->date('completed_at')->nullable();
+            $table->enum('status', [ 'assigned', 'done', 'approved', 'invoicing','invoice_sent','paid'])->default('assigned');
+            $table->timestamp('start_date');
+            $table->timestamp('end_date');
+            $table->foreignId('assigned_id')->constrained('users');
             $table->text('completion_notes')->nullable();
             $table->timestamps();
+
         });
     }
 

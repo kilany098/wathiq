@@ -9,8 +9,13 @@
                 <form id="createUserForm" action="{{ route('users.create') }}" class="row" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3 col-md-12">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <label for="first_name" class="form-label">First name</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name" required>
+                    </div>
+
+                    <div class="mb-3 col-md-12">
+                        <label for="last_name" class="form-label">Last name</label>
+                        <input type="text" class="form-control" id="last_name" name="last_name" required>
                     </div>
 
                     <div class="mb-3 col-md-12">

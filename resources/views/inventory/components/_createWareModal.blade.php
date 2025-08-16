@@ -23,7 +23,7 @@
                         <select class="form-control" id="manager_id" name="manager_id" required>
                             <option value="" disabled selected>Choose a manager</option>
                             @foreach ($managers as $manager)
-                            <option value={{$manager->id}}>{{$manager->name}}</option>
+                            <option value={{$manager->id}}>{{$manager->full_name}}</option>
                             @endforeach
                         </select>
                     </div>

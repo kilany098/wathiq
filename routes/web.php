@@ -21,7 +21,8 @@ OrderController,
 AllocationController
 };    
 use App\Http\Controllers\SupOp\{
-    AttributionController
+    AttributionController,
+    AssignController
 };
 
 Route::get('/', function () {
@@ -102,8 +103,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
     
     //Attribution Panel
-     Route::prefix('attribution')->group(function (){
-     Route::get('/',[AttributionController::class,'index'])->name('attribution.index');
+     Route::get('/attribution',[AttributionController::class,'index'])->name('attribution.index');
+
+     //Assign order panel
+     Route::prefix('attribution/')->group(function (){
+     Route::get('/{id}/assign',[AssignController::class,'index'])->name('assign.index');
+     Route::post('/create', [AssignController::class, 'store'])->name('assign.create');
      });
 
     //Work order Panel

@@ -22,7 +22,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|string|max:15',
             'role' => 'required|in:superadmin,admin,operation,inventory,hr,accountant,technician',
@@ -31,7 +32,9 @@ class UserController extends Controller
 
         // Create new user
         $user = User::create([
-            'name' => $validated['name'],
+            'first_name' => $validated['first_name'],
+            'last_name' => $validated['last_name'],
+            'full_name'=>$validated['first_name'].' '.$validated['last_name'],
             'email' => $validated['email'],
             'phone' => $validated['phone'],
             'password' => Hash::make($validated['password']),
@@ -54,7 +57,8 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         // Validate inputs
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'email' => ['required', 'email'],
             'phone' => 'required|string|max:15',
             'status' => 'required|in:0,1',
@@ -63,7 +67,7 @@ class UserController extends Controller
         ]);
 
         // Update user attributes
-        $user->name = $validated['name'];
+        $user->full_name = $validated['full_name'];
         $user->email = $validated['email'];
         $user->phone = $validated['phone'];
         $user->is_active = $validated['status'];
