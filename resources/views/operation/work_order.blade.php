@@ -11,8 +11,6 @@
             <li class="breadcrumb-item"><a href="javascript: void(0);">work orders</a></li>
             <li class="breadcrumb-item active">Operation</li>
         </ol>
-
-        <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#createOrderModal">Create Work Order</button>
     </div>
 </div>
 
@@ -27,7 +25,7 @@
 </div>
 
 
-@include('operation.components._createOrderModal')
+
 
   <div class="modal fade" id="addUserModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createContractModalLabel" aria-hidden="true">
     <div class="modal-dialog">

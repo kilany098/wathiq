@@ -24,12 +24,13 @@ class ClientController extends Controller
             'contact_phone' => 'required|string|max:15|starts_with:05,5,+9665,009665,9665',
             'email' => 'required|email|unique:clients,email',
             'phone' => 'required',
-            'address' => 'required|string|max:255',
             'tax_number' => 'required_if:type,company|nullable|string|max:50',
             'type' => 'required|in:individual,company',
             'commercial_number'=>'required_if:type,company|nullable|string|regex:/^[0-9]{10}$/',
             'commercial_register'=>'required|file|mimes:pdf,jpg,png|max:5120',
             'personal_id'=>'required|file|mimes:pdf,jpg,png|max:5120',
+            'national_address'=>'required|file|mimes:pdf,jpg,png|max:5120',
+            'IBAN_number'=>'required|file|mimes:pdf,jpg,png|max:5120',
         ]);
 
         if($request->hasFile('commercial_register')){
@@ -47,6 +48,24 @@ class ClientController extends Controller
             }else{
                 $validated['personal_id'] = null; 
             }
+
+             if($request->hasFile('national_address')){
+                $path = Storage::disk('public')->putFile('national_address' , $request->file('national_address'));
+                $validated['national_address'] = $path;
+                
+            }else{
+                $validated['national_address'] = null; 
+            }
+
+
+             if($request->hasFile('IBAN_number')){
+                $path = Storage::disk('public')->putFile('IBAN_number' , $request->file('IBAN_number'));
+                $validated['IBAN_number'] = $path;
+                
+            }else{
+                $validated['IBAN_number'] = null; 
+            }
+
 
 
         // Create new user
@@ -73,12 +92,13 @@ class ClientController extends Controller
             'contact_phone' => 'required|string|max:15|starts_with:05,5,+9665,009665,9665',
             'email' => 'required|email',
             'phone' => 'required',
-            'address' => 'required|string|max:255',
             'tax_number' => 'required_if:type,company|nullable|string|max:50',
             'type' => 'required|in:individual,company',
             'commercial_number'=>'required_if:type,company|nullable|string|regex:/^[0-9]{10}$/',
             'commercial_register'=>'nullable|file|mimes:pdf,jpg,png|max:5120',
             'personal_id'=>'nullable|file|mimes:pdf,jpg,png|max:5120',
+            'national_address'=>'nullable|file|mimes:pdf,jpg,png|max:5120',
+            'IBAN_number'=>'nullable|file|mimes:pdf,jpg,png|max:5120',
             'status'=>'required',
         ]);
 
@@ -102,6 +122,28 @@ class ClientController extends Controller
                 $validated['personal_id'] = $path;
             }else{
                 $validated['personal_id'] = $client->personal_id;
+            }
+
+             if($request->hasFile('national_address')){
+                if($client->personal_id){
+                    Storage::disk('public')->delete($client->national_address);
+                }
+
+                $path = Storage::disk('public')->putFile('national_address' , $request->file('national_address'));
+                $validated['national_address'] = $path;
+            }else{
+                $validated['national_address'] = $client->national_address;
+            }
+
+             if($request->hasFile('IBAN_number')){
+                if($client->IBAN_number){
+                    Storage::disk('public')->delete($client->IBAN_number);
+                }
+
+                $path = Storage::disk('public')->putFile('IBAN_number' , $request->file('IBAN_number'));
+                $validated['IBAN_number'] = $path;
+            }else{
+                $validated['IBAN_number'] = $client->IBAN_number;
             }
 
 

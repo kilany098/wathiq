@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('branch_id')->constrained('branches');
             $table->foreignId('contract_id')->constrained('contracts');
+            $table->decimal('visit_price', 15, 2);
+            $table->float('expected_hours');
             $table->date('month');
             $table->integer('visits_count');
             $table->timestamps();

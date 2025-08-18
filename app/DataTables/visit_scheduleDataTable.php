@@ -121,7 +121,40 @@ class visit_scheduleDataTable extends DataTable
                         Button::make('print'),
                         Button::make('reset'),
                         Button::make('reload')
-                    ]);
+                    ])
+                    ->initComplete("function() {
+                    // Create a container for search inputs in card-body
+                    var searchContainer = $('<div class=\"row mb-3\" id=\"custom-search-container\"></div>');
+                    $('.card-body').prepend(searchContainer);
+                    
+                    // Add search inputs for each column
+                    this.api().columns().every(function(index) {
+                        var column = this;
+                        var title = $(column.header()).text().trim();
+                        
+                        // Skip action and status columns
+                        if(title === 'Action' || title === 'Status' || title === 'Id') return;
+                        
+                        // Create column wrapper
+                        var colDiv = $('<div class=\"col-md-2 mb-2\"></div>');
+                        
+                        // Create label
+                        var label = $('<label class=\"form-label\">').text(title);
+                        
+                        // Create input
+                        var input = $('<input type=\"text\" class=\"form-control form-control-sm\">')
+                            .attr('placeholder', 'Search '+title)
+                            .on('keyup change clear', function() {
+                                if (column.search() !== this.value) {
+                                    column.search(this.value).draw();
+                                }
+                            });
+                        
+                        // Append to container
+                        colDiv.append(label).append(input);
+                        searchContainer.append(colDiv);
+                    });
+                }");
     }
 
     /**

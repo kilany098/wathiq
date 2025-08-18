@@ -22,7 +22,12 @@ AllocationController
 };    
 use App\Http\Controllers\SupOp\{
     AttributionController,
-    AssignController
+    AssignController,
+    UrgentController,
+    PendingController
+};
+use App\Http\Controllers\Financial\{
+    ChartController,
 };
 
 Route::get('/', function () {
@@ -120,6 +125,26 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('order/{id}/create',[OrderController::class,'createWorker'])->name('order.create');
     }); 
 
+    //Pending order panel
+    Route::prefix('pending_order')->group(function (){
+    Route::get('/',[PendingController::class,'index'])->name('pending.index');
+
+    });
+
+    //Urgent order panel
+    Route::prefix('urgent_order')->group(function (){
+    Route::get('/',[UrgentController::class,'index'])->name('urgent.index');
+
+    });
+
+    //Financial panel
+    Route::prefix('financial')->group(function (){
+    Route::get('/chart',[ChartController::class,'index'])->name('chart.index');
+    Route::get('/journal',[ChartController::class,'journal'])->name('journal.index');
+    Route::get('/invoice',[ChartController::class,'invoice'])->name('invoice.index');
+    Route::get('/reports',[ChartController::class,'reports'])->name('reports.index');
+
+    });
 });
 
 

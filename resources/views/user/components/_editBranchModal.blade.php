@@ -49,11 +49,6 @@
                         </select>
                     </div>
 
-                    <div class="col-md-6 mb-3">
-                        <label for="visit_price" class="form-label">Visit Price *</label>
-                        <input type="number" class="form-control" id="edit_visit_price" name="visit_price" min="1" step="0.01" required>
-                    </div>
-
                     <div class="mb-3 col-md-6">
                         <label for="edit_status" class="form-label">Status</label>
                         <select class="form-control" id="edit_status" name="status">

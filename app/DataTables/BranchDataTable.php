@@ -117,7 +117,6 @@ public function forClient($client_id)
             Column::make('manager_phone'),
             Column::make('city'),
             Column::make('zone'),
-            Column::make('visit_price'),
             Column::make('map_link'),
             Column::make('status'),
             Column::make('created_at'),

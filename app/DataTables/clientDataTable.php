@@ -46,7 +46,6 @@ class clientDataTable extends DataTable
                 }
             })
             ->addColumn('action', function ($client) {
-                if ($client->type == 'company') {
                 $actionHtml = '
                     <div class="d-flex gap-2">
                         <button class="btn btn-soft-warning align-middle fs-18 update-user" data-id="' . $client->id . '" data-bs-toggle="modal" data-bs-target="#editClientModal">
@@ -56,14 +55,6 @@ class clientDataTable extends DataTable
                         <iconify-icon icon="tabler:building-community"></iconify-icon>
                         </a>
                     </div>';
-                }else{
-                  $actionHtml = '
-                    <div class="d-flex gap-2">
-                        <button class="btn btn-soft-warning align-middle fs-18 update-user" data-id="' . $client->id . '" data-bs-toggle="modal" data-bs-target="#editClientModal">
-                            <iconify-icon icon="solar:pen-2-broken"></iconify-icon>
-                        </button>
-                    </div>';  
-                }
                 return $actionHtml;
             })
             ->rawColumns(['action','status']);
@@ -110,7 +101,6 @@ class clientDataTable extends DataTable
             Column::make('contact_phone'),
             Column::make('email'),
             Column::make('phone'),
-            Column::make('address'),
             Column::make('tax_number'),
             Column::make('commercial_number'),
             Column::make('type'),

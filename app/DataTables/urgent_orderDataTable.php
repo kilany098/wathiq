@@ -12,18 +12,18 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class work_orderDataTable extends DataTable
+class urgent_orderDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
      *
      * @param QueryBuilder<work_order> $query Results from query() method.
      */
-    protected $scheduleId;
+    protected $status;
 
-public function forSchedule($schedule_id)
+public function forStatus($status)
     {
-        $this->scheduleId = $schedule_id;
+        $this->status = $status;
         return $this;
     }
     public function dataTable(QueryBuilder $query): EloquentDataTable
@@ -56,7 +56,23 @@ public function forSchedule($schedule_id)
                     return '-';
                 }
                 return $work_order->completion_notes; // Example: "25/12 14:30"
-            });
+            })
+            ->addColumn('action', function ($work_order) {
+                $actionHtml = '
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-soft-primary align-middle fs-18 add-user" data-id="' . $work_order->id . '" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                            <iconify-icon icon="solar:user-rounded-outline"></iconify-icon>
+                        </button>
+                        <button class="btn btn-soft-warning align-middle fs-18 update-order" data-id="' . $work_order->id . '" data-bs-toggle="modal" data-bs-target="#editOrderModal">
+                            <iconify-icon icon="solar:pen-2-broken"></iconify-icon>
+                        </button>
+                        <button class="btn btn-soft-secondary align-middle fs-18 reports-order" data-id="' . $work_order->id . '" >
+                            <iconify-icon icon="solar:user-id-outline"></iconify-icon>
+                        </button>
+                    </div>';
+                return $actionHtml;
+            })
+             ->rawColumns(['action']);
     }
 
     /**
@@ -68,8 +84,8 @@ public function forSchedule($schedule_id)
     {
         $query = $model->newQuery();
        
-        if ($this->scheduleId) {
-            $query->where('schedule_id', $this->scheduleId);
+        if ($this->status) {
+            $query->where('status', $this->status);
         }
         
         return $query;
@@ -81,10 +97,9 @@ public function forSchedule($schedule_id)
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('work_order-table')
+                    ->setTableId('urgent_order-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->orderBy(0)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
@@ -120,6 +135,6 @@ public function forSchedule($schedule_id)
      */
     protected function filename(): string
     {
-        return 'work_order_' . date('YmdHis');
+        return 'urgent_order_' . date('YmdHis');
     }
 }

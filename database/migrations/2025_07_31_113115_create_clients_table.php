@@ -17,12 +17,13 @@ return new class extends Migration
             $table->string('contact_phone')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->string('address')->nullable();
             $table->string('tax_number')->nullable();
             $table->string('commercial_number')->nullable();
             $table->boolean('status')->default(1);
             $table->string('commercial_register')->nullable();
             $table->string('personal_id')->nullable();
+            $table->string('national_address')->nullable();
+            $table->string('IBAN_number')->nullable();
             $table->enum('type', ['individual', 'company'])->default('company');
             $table->timestamps();
         });

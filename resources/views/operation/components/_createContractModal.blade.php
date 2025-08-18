@@ -62,10 +62,6 @@
                                         <label for="visits" class="form-label">Visits *</label>
                                         <input type="number" class="form-control" id="visits" name="visits" min="1" required>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="expected_hours" class="form-label">Expected Hours *</label>
-                                        <input type="number" class="form-control" id="expected_hours" name="expected_hours" min="1" step="0.1" required>
-                                    </div>
                                 </div>
                                 
                                 <div class="row">

@@ -130,9 +130,56 @@
                                 <span class="menu-text">Work Orders</span>
                             </a>
                         </li>
+                        <li class="side-nav-item">
+                            <a href="{{route('urgent.index')}}" class="side-nav-link">
+                                <span class="menu-text">Urgent Orders</span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="{{route('pending.index')}}" class="side-nav-link">
+                                <span class="menu-text">Pending Orders</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
+
+
+ <li class="side-nav-title">Financial Management</li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarFinancial" aria-expanded="false" aria-controls="sidebarOperations"
+                    class="side-nav-link">
+                    <span class="menu-icon"><i data-lucide="pie-chart" class="w-5 h-5 text-green-500"></i></span>
+                    <span class="menu-text">Financial</span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarFinancial">
+                    <ul class="sub-menu">
+                        <li class="side-nav-item">
+                            <a href="{{route('chart.index')}}" class="side-nav-link">
+                                <span class="menu-text">Dynamic Chart</span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="{{route('journal.index')}}" class="side-nav-link">
+                                <span class="menu-text">Journal Entries</span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="{{route('invoice.index')}}" class="side-nav-link">
+                                <span class="menu-text">Invoices</span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="{{route('reports.index')}}" class="side-nav-link">
+                                <span class="menu-text">Reports</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
 
 
             {{-- <li class="side-nav-title">Settings</li>

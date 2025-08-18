@@ -32,60 +32,59 @@ public function store(Request $request)
         'contract_id' => 'required|exists:contracts,id',
         'schedules' => 'required|array',
         'schedules.*' => 'required|array',
+        'schedules.*.visit_price' => 'required|numeric|min:0',
+        'schedules.*.hours_per_visit' => 'required|numeric|min:0',
     ]);
 
     DB::beginTransaction();
     
     try {
         $totalContractValue = 0;
-        $branchVisitTotals = [];
+        $totalExpectedHours = 0;
+        $totalVisits = 0;
         
-        foreach ($request->schedules as $branchId => $monthsData) {
-            // Get the branch to access visit_price
-            $branch = branch::findOrFail($branchId);
+        foreach ($request->schedules as $branchId => $scheduleData) {
             $branchTotalVisits = 0;
+            $branchTotalValue = 0;
+            $branchTotalHours = 0;
             
-            foreach ($monthsData as $month => $visitsCount) {
-                // Skip the branch_id key and validate month format
-                if ($month === 'branch_id' || !preg_match('/^\d{4}-\d{2}$/', $month)) {
-                    continue;
+            foreach ($scheduleData as $key => $value) {
+                // Process only month fields (YYYY-MM format)
+                if (preg_match('/^\d{4}-\d{2}$/', $key)) {
+                    $visitsCount = (int)$value;
+                    $monthDate = $key . '-01';
+                    $visitPrice = (float)$scheduleData['visit_price'];
+                    $hoursPerVisit = (float)$scheduleData['hours_per_visit'];
+                    
+                    // Save to visit_schedule table
+                    visit_schedule::updateOrCreate(
+                        [
+                            'branch_id' => $branchId,
+                            'month' => $monthDate,
+                            'contract_id' => $validated['contract_id'],
+                        ],
+                        [
+                            'visits_count' => $visitsCount,
+                            'visit_price' => $visitPrice,
+                            'expected_hours' => $hoursPerVisit,
+                        ]
+                    );
+                    
+                    $branchTotalVisits += $visitsCount;
+                    $branchTotalValue += $visitsCount * $visitPrice;
+                    $branchTotalHours += $visitsCount * $hoursPerVisit;
                 }
-
-                $visitsCount = (int)$visitsCount;
-                $monthDate = $month . '-01';
-                
-                // Save the visit schedule
-                visit_schedule::updateOrCreate(
-                    [
-                        'branch_id' => $branchId,
-                        'month' => $monthDate,
-                        'contract_id' => $validated['contract_id'],
-                    ],
-                    [
-                        'visits_count' => $visitsCount,
-                    ]
-                );
-                
-                // Calculate branch total visits
-                $branchTotalVisits += $visitsCount;
             }
             
-            // Calculate branch total value (visits * price)
-            $branchTotalValue = $branchTotalVisits * $branch->visit_price;
+            $totalVisits += $branchTotalVisits;
             $totalContractValue += $branchTotalValue;
-            
-            // Store branch totals if needed
-            $branchVisitTotals[$branchId] = [
-                'visits' => $branchTotalVisits,
-                'value' => $branchTotalValue
-            ];
+            $totalExpectedHours += $branchTotalHours;
         }
 
-        // Update contract with total value and status
+        // Update contract with totals
         Contract::find($validated['contract_id'])->update([
             'status' => 'active',
             'total_value' => $totalContractValue,
-            // Add any other fields you want to update
         ]);
 
         DB::commit();
@@ -101,7 +100,6 @@ public function store(Request $request)
                      ->withInput();
     }
 }
-
 
 
 

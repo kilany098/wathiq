@@ -145,7 +145,6 @@ class contractDataTable extends DataTable
             Column::make('end_date'),
             Column::make('total_value'),
             Column::make('visits'),
-            Column::make('expected_hours'),
             Column::make('payment_terms'),
             Column::make('terms_and_conditions'),
             Column::make('note'),

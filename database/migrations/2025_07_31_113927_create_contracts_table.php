@@ -20,7 +20,6 @@ return new class extends Migration
             $table->date('end_date');
             $table->decimal('total_value', 15, 2)->default(0);
             $table->unsignedInteger('visits');
-            $table->float('expected_hours');
             $table->enum('payment_terms', ['monthly', 'quarterly', 'annual', 'custom'])->default('monthly');
             $table->text('terms_and_conditions')->nullable();
             $table->string('note')->nullable();

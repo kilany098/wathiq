@@ -35,11 +35,6 @@
                     </div>
 
                     <div class="mb-3 col-md-12">
-                        <label for="edit_address" class="form-label">Address*</label>
-                        <input type="text" class="form-control" id="edit_address" name="address" required maxlength="255">
-                    </div>
-
-                    <div class="mb-3 col-md-12">
                         <label for="edit_type" class="form-label">Type*</label>
                         <select class="form-control" id="edit_type" name="type" required>
                             <option value="" disabled selected>Choose Type</option>
@@ -78,6 +73,20 @@
                     <div class="mb-3 col-md-12">
                         <label for="edit_personal_id" class="form-label">Personal ID File (PDF, JPG, PNG, max 5MB)</label>
                         <input type="file" class="form-control" id="edit_personal_id" name="personal_id" 
+                               accept=".pdf,.jpg,.png">
+                        <small class="text-muted">Leave empty to keep existing file</small>
+                    </div>
+
+                      <div class="mb-3 col-md-12">
+                        <label for="edit_national_address" class="form-label">National Address File (PDF, JPG, PNG, max 5MB)</label>
+                        <input type="file" class="form-control" id="edit_national_address" name="national_address" 
+                               accept=".pdf,.jpg,.png">
+                        <small class="text-muted">Leave empty to keep existing file</small>
+                    </div>
+
+                      <div class="mb-3 col-md-12">
+                        <label for="edit_IBAN_number" class="form-label">IBAN Number File (PDF, JPG, PNG, max 5MB)</label>
+                        <input type="file" class="form-control" id="edit_IBAN_number" name="IBAN_number" 
                                accept=".pdf,.jpg,.png">
                         <small class="text-muted">Leave empty to keep existing file</small>
                     </div>

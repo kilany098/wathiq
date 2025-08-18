@@ -35,7 +35,6 @@ class BranchController extends Controller
             'manager_name' => 'required|string|max:255',
             'manager_phone' => 'required|string|max:15|starts_with:05,5,+9665,009665,9665',
             'name'=> 'required|string|max:255',
-            'visit_price' => 'required|numeric|min:1',
             'city_id' => 'required|exists:cities,id',
             'zone_id' => 'required',
             'map_link' => 'required|url|max:255',

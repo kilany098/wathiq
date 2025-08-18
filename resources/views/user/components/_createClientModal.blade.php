@@ -29,11 +29,6 @@
             </div>
 
             <div class="mb-3 col-md-12">
-                <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control" id="address" name="address" required maxlength="255">
-            </div>
-
-            <div class="mb-3 col-md-12">
                 <label for="type" class="form-label">Type</label>
                 <select class="form-control" id="type" name="type" required>
                     <option value="" disabled selected>Choose Type</option>
@@ -62,6 +57,18 @@
             <div class="mb-3 col-md-12">
                 <label for="personal_id" class="form-label">Personal ID File (PDF, JPG, PNG, max 5MB)</label>
                 <input type="file" class="form-control" id="personal_id" name="personal_id" 
+                       accept=".pdf,.jpg,.png" required>
+            </div>
+
+            <div class="mb-3 col-md-12">
+                <label for="national_address" class="form-label">National Address File (PDF, JPG, PNG, max 5MB)</label>
+                <input type="file" class="form-control" id="national_address" name="national_address" 
+                       accept=".pdf,.jpg,.png" required>
+            </div>
+
+            <div class="mb-3 col-md-12">
+                <label for="IBAN_number" class="form-label">IBAN Number File (PDF, JPG, PNG, max 5MB)</label>
+                <input type="file" class="form-control" id="IBAN_number" name="IBAN_number" 
                        accept=".pdf,.jpg,.png" required>
             </div>
         </form>

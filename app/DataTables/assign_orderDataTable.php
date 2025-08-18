@@ -19,34 +19,36 @@ class assign_orderDataTable extends DataTable
      *
      * @param QueryBuilder<work_order> $query Results from query() method.
      */
-    protected $scheduleId;
-
-public function forSchedule($schedule_id)
-    {
-        $this->scheduleId = $schedule_id;
-        return $this;
-    }
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
-             ->editColumn('due_date', function ($work_order) {
-                if (!$work_order->due_date) {
+             ->addColumn('start_time', function ($work_order) {
+                if (!$work_order->start_date) {
                     return '-';
                 }
 
-                $date = \Carbon\Carbon::parse($work_order->due_date);
+                $date = \Carbon\Carbon::parse($work_order->start_date);
 
-                return $date->format('d/m/Y');
+                return $date->format('d/m H:i'); // Example: "25/12 14:30"
             })
-             ->editColumn('completed_at', function ($work_order) {
-                if (!$work_order->completed_at) {
+            ->addColumn('end_time', function ($work_order) {
+                if (!$work_order->end_date) {
                     return '-';
                 }
 
-                $date = \Carbon\Carbon::parse($work_order->completed_at);
+                $date = \Carbon\Carbon::parse($work_order->end_date);
 
-                return $date->format('d/m/Y');
+                return $date->format('d/m H:i'); // Example: "25/12 14:30"
+            })
+            ->editColumn('assigned_to', function ($work_order) {
+                return $work_order->assigned->full_name; // Example: "25/12 14:30"
+            })
+            ->editColumn('completion_notes', function ($work_order) {
+                if (!$work_order->completion_notes) {
+                    return '-';
+                }
+                return $work_order->completion_notes; // Example: "25/12 14:30"
             })
             ->addColumn('action', function ($work_order) {
                 $actionHtml = '
@@ -73,13 +75,8 @@ public function forSchedule($schedule_id)
      */
     public function query(work_order $model): QueryBuilder
     {
-        $query = $model->newQuery();
+         return $model->newQuery();
        
-        if ($this->scheduleId) {
-            $query->where('schedule_id', $this->scheduleId);
-        }
-        
-        return $query;
     }
 
     /**
@@ -111,13 +108,12 @@ public function forSchedule($schedule_id)
         return [
             Column::make('id'),
             Column::make('order_number'),
-            Column::make('branch_name'),
             Column::make('title'),
             Column::make('description'),
             Column::make('priority'),
             Column::make('status'),
-            Column::make('start_date'),
-            Column::make('end_date'),
+            Column::make('start_time'),
+            Column::make('end_time'),
             Column::make('assigned_to'),
             Column::make('completion_notes'),
             Column::computed('action')
