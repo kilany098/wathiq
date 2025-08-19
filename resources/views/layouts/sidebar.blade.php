@@ -20,8 +20,11 @@
 
     <div data-simplebar>
 
+
+        
         <!--- Sidenav Menu -->
         <ul class="side-nav">
+        @role('superadmin')    
             <li class="side-nav-title">Navigation</li>
 
             <li class="side-nav-item">
@@ -39,6 +42,35 @@
                     <span class="menu-text"> Users </span>
                 </a>
             </li>
+
+
+            <li class="side-nav-title">Manage HR</li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarHR" aria-expanded="false" aria-controls="sidebarOperations"
+                    class="side-nav-link">
+                    <span class="menu-icon"><i data-lucide="briefcase" class="w-5 h-5 text-blue-500"></i></span>
+                    <span class="menu-text">HR</span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarHR">
+                    <ul class="sub-menu">
+                        <li class="side-nav-item">
+                            <a href="#" class="side-nav-link">
+                                <span class="menu-text">Clients</span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="#" class="side-nav-link">
+                                <span class="menu-text">Contracts</span>
+                                <span class="badge bg-danger rounded">{{$new_contract}} New</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
 
             <li class="side-nav-title">Manage Inventory</li>
 
@@ -70,6 +102,12 @@
                             <a href="{{route('stock.index')}}" class="side-nav-link">
                                 <span class="menu-text">Stock</span>
                                 <span class="badge bg-danger rounded">{{$stock_min}} Stock Alert</span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="#" class="side-nav-link">
+                                <span class="menu-text">Requests</span>
+                                
                             </a>
                         </li>
                         <li class="side-nav-item">
@@ -180,8 +218,40 @@
                 </div>
             </li>
 
+@endrole
+@role('technician')
+<li class="side-nav-title">Technical Assignments</li>
 
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarTechnical" aria-expanded="false" aria-controls="sidebarOperations"
+                    class="side-nav-link">
+                    <span class="menu-icon"><i data-lucide="clipboard-list" class="w-5 h-5 text-green-500"></i></span>
+                    <span class="menu-text">Assignments</span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarTechnical">
+                    <ul class="sub-menu">
+                        <li class="side-nav-item">
+                            <a href="#" class="side-nav-link">
+                                <span class="menu-text">Monthly Assignments</span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="#" class="side-nav-link">
+                                <span class="menu-text">Daily Assignments</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
 
+            <li class="side-nav-item">
+                <a href="#" class="side-nav-link">
+                    <span class="menu-icon"><i data-lucide="box" class="w-5 h-5 text-green-500"></i></span>
+                    <span class="menu-text"> My Inventory </span>
+                </a>
+            </li>
+@endrole
             {{-- <li class="side-nav-title">Settings</li>
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#settings" aria-expanded="false" aria-controls="settings" class="side-nav-link">

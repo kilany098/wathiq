@@ -134,7 +134,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //Urgent order panel
     Route::prefix('urgent_order')->group(function (){
     Route::get('/',[UrgentController::class,'index'])->name('urgent.index');
-
+    Route::get('/contracts',[UrgentController::class, 'getContract'])->name('contracts.get');
+    Route::get('/branches',[UrgentController::class, 'getBranch'])->name('branches.get');
+    Route::post('/create', [UrgentController::class, 'store'])->name('urgent.create');
     });
 
     //Financial panel

@@ -19,11 +19,11 @@ class urgent_orderDataTable extends DataTable
      *
      * @param QueryBuilder<work_order> $query Results from query() method.
      */
-    protected $status;
+    protected $priority;
 
-public function forStatus($status)
+public function forPriority($priority)
     {
-        $this->status = $status;
+        $this->priority = $priority;
         return $this;
     }
     public function dataTable(QueryBuilder $query): EloquentDataTable
@@ -84,8 +84,8 @@ public function forStatus($status)
     {
         $query = $model->newQuery();
        
-        if ($this->status) {
-            $query->where('status', $this->status);
+        if ($this->priority) {
+            $query->where('priority', $this->priority);
         }
         
         return $query;
