@@ -21,7 +21,7 @@ class work_orderDataTable extends DataTable
      */
     protected $scheduleId;
 
-public function forSchedule($schedule_id)
+    public function forSchedule($schedule_id)
     {
         $this->scheduleId = $schedule_id;
         return $this;
@@ -30,7 +30,7 @@ public function forSchedule($schedule_id)
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
-             ->addColumn('start_time', function ($work_order) {
+            ->addColumn('start_time', function ($work_order) {
                 if (!$work_order->start_date) {
                     return '-';
                 }
@@ -67,11 +67,11 @@ public function forSchedule($schedule_id)
     public function query(work_order $model): QueryBuilder
     {
         $query = $model->newQuery();
-       
+
         if ($this->scheduleId) {
             $query->where('schedule_id', $this->scheduleId);
         }
-        
+
         return $query;
     }
 
@@ -81,19 +81,19 @@ public function forSchedule($schedule_id)
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('work_order-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->orderBy(0)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('work_order-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->orderBy(0)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            ]);
     }
 
     /**

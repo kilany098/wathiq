@@ -17,11 +17,16 @@ class items extends Model
     {
         return $this->hasMany(transaction::class);
     }
-    public function warehouse(){
-        return $this->belongsTo(warehouse::class,'warehouse_id');
+    public function warehouse()
+    {
+        return $this->belongsTo(warehouse::class, 'warehouse_id');
     }
     public function stocks()
     {
         return $this->hasMany(stock::class);
+    }
+    public function tech_item()
+    {
+        return $this->hasOne(tech_item::class);
     }
 }

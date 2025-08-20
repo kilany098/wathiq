@@ -21,10 +21,10 @@
     <div data-simplebar>
 
 
-        
+
         <!--- Sidenav Menu -->
         <ul class="side-nav">
-        @role('superadmin')    
+            @role('superadmin')
             <li class="side-nav-title">Navigation</li>
 
             <li class="side-nav-item">
@@ -56,14 +56,8 @@
                 <div class="collapse" id="sidebarHR">
                     <ul class="sub-menu">
                         <li class="side-nav-item">
-                            <a href="#" class="side-nav-link">
-                                <span class="menu-text">Clients</span>
-                            </a>
-                        </li>
-                        <li class="side-nav-item">
-                            <a href="#" class="side-nav-link">
+                            <a href="{{route('hr.index')}}" class="side-nav-link">
                                 <span class="menu-text">Contracts</span>
-                                <span class="badge bg-danger rounded">{{$new_contract}} New</span>
                             </a>
                         </li>
                     </ul>
@@ -107,7 +101,7 @@
                         <li class="side-nav-item">
                             <a href="#" class="side-nav-link">
                                 <span class="menu-text">Requests</span>
-                                
+                                <span class="badge bg-danger rounded">0 Requests</span>
                             </a>
                         </li>
                         <li class="side-nav-item">
@@ -183,7 +177,7 @@
             </li>
 
 
- <li class="side-nav-title">Financial Management</li>
+            <li class="side-nav-title">Financial Management</li>
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarFinancial" aria-expanded="false" aria-controls="sidebarOperations"
@@ -218,9 +212,9 @@
                 </div>
             </li>
 
-@endrole
-@role('technician')
-<li class="side-nav-title">Technical Assignments</li>
+            @endrole
+            @role('technician')
+            <li class="side-nav-title">Technical Assignments</li>
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarTechnical" aria-expanded="false" aria-controls="sidebarOperations"
@@ -251,7 +245,7 @@
                     <span class="menu-text"> My Inventory </span>
                 </a>
             </li>
-@endrole
+            @endrole
             {{-- <li class="side-nav-title">Settings</li>
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#settings" aria-expanded="false" aria-controls="settings" class="side-nav-link">

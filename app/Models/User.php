@@ -64,6 +64,10 @@ class User extends Authenticatable implements LaratrustUser
     {
         return $this->hasOne(Employee_info::class);
     }
+    public function item()
+    {
+        return $this->hasMany(tech_item::class);
+    }
     public function invoices()
     {
         return $this->hasMany(invoice::class);
@@ -84,8 +88,8 @@ class User extends Authenticatable implements LaratrustUser
     {
         return $this->morphOne(image::class, 'imageable');
     }
-    public function contracts(){
+    public function contracts()
+    {
         return $this->hasMany(contract::class);
     }
-
 }
