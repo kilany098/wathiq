@@ -77,6 +77,23 @@
                 </a>
                 <div class="collapse" id="sidebarInventory">
                     <ul class="sub-menu">
+                         <li class="side-nav-item">
+                            <a href="{{route('stock.index')}}" class="side-nav-link">
+                                <span class="menu-text">Stock</span>
+                                <span class="badge bg-danger rounded">{{$stock_min}} Stock Alert</span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="#" class="side-nav-link">
+                                <span class="menu-text">Requests</span>
+                                <span class="badge bg-danger rounded">0 Requests</span>
+                            </a>
+                        </li>
+                          <li class="side-nav-item">
+                            <a href="{{route('transaction.index')}}" class="side-nav-link">
+                                <span class="menu-text">Transactions</span>
+                            </a>
+                        </li>
                         <li class="side-nav-item">
                             <a href="{{route('warehouse.index')}}" class="side-nav-link">
                                 <span class="menu-text">Warehouses</span>
@@ -92,23 +109,9 @@
                                 <span class="menu-text">Items</span>
                             </a>
                         </li>
-                        <li class="side-nav-item">
-                            <a href="{{route('stock.index')}}" class="side-nav-link">
-                                <span class="menu-text">Stock</span>
-                                <span class="badge bg-danger rounded">{{$stock_min}} Stock Alert</span>
-                            </a>
-                        </li>
-                        <li class="side-nav-item">
-                            <a href="#" class="side-nav-link">
-                                <span class="menu-text">Requests</span>
-                                <span class="badge bg-danger rounded">0 Requests</span>
-                            </a>
-                        </li>
-                        <li class="side-nav-item">
-                            <a href="{{route('transaction.index')}}" class="side-nav-link">
-                                <span class="menu-text">Transactions</span>
-                            </a>
-                        </li>
+                          
+                       
+                      
                     </ul>
                 </div>
             </li>
@@ -226,12 +229,12 @@
                 <div class="collapse" id="sidebarTechnical">
                     <ul class="sub-menu">
                         <li class="side-nav-item">
-                            <a href="#" class="side-nav-link">
+                            <a href="{{route('month.index')}}" class="side-nav-link">
                                 <span class="menu-text">Monthly Assignments</span>
                             </a>
                         </li>
                         <li class="side-nav-item">
-                            <a href="#" class="side-nav-link">
+                            <a href="{{route('day.index')}}" class="side-nav-link">
                                 <span class="menu-text">Daily Assignments</span>
                             </a>
                         </li>
@@ -240,7 +243,7 @@
             </li>
 
             <li class="side-nav-item">
-                <a href="#" class="side-nav-link">
+                <a href="{{route('inventory.index')}}" class="side-nav-link">
                     <span class="menu-icon"><i data-lucide="box" class="w-5 h-5 text-green-500"></i></span>
                     <span class="menu-text"> My Inventory </span>
                 </a>

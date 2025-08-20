@@ -29,4 +29,8 @@ class items extends Model
     {
         return $this->hasOne(tech_item::class);
     }
+    public function requests()
+    {
+        return $this->hasMany(request::class);
+    }
 }

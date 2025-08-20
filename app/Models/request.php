@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class request extends Model
+{
+    protected $guarded = ['id'];
+     protected $table = 'requests';
+
+public function item(){
+    return $this->belongsTo(items::class,'item_id');
+}
+public function warehouse(){
+    return $this->belongsTo(warehouse::class,'warehouse_id');
+}
+public function creator(){
+    return $this->belongsTo(User::class,'created_by');
+}
+public function order(){
+    return $this->belongsTo(work_order::class,'related_order_id');
+}
+}

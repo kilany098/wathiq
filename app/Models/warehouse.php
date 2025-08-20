@@ -24,4 +24,8 @@ class warehouse extends Model
     {
         return $this->hasMany(stock::class);
     }
+    public function requests()
+    {
+        return $this->hasMany(request::class);
+    }
 }

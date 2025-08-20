@@ -14,28 +14,27 @@ use Yajra\DataTables\Services\DataTable;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
-class monthlyDataTable extends DataTable
+class dailyDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
      *
      * @param QueryBuilder<work_order> $query Results from query() method.
      */
-    protected $assignedId;
-    protected $month;
+       protected $assignedId;
+    protected $date;
 
-    public function forUser($assigned_id,$month)
+    public function forUser($assigned_id, $date = null)
     {
-        $this->month = $month;
+        $this->date = $date;
         $this->assignedId = $assigned_id;
         return $this;
     }
-
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
-              ->addColumn('branch_name', function ($work_order) {
+             ->addColumn('branch_name', function ($work_order) {
                 return $work_order->schedule->branch->name; 
             })
             ->addColumn('city', function ($work_order) {
@@ -52,7 +51,6 @@ class monthlyDataTable extends DataTable
                     </div>';
                 return $actionHtml;
             });
-            
     }
 
     /**
@@ -62,7 +60,7 @@ class monthlyDataTable extends DataTable
      */
     public function query(work_order $model): QueryBuilder
     {
-        $query = $model->newQuery()->with('schedule'); // Eager load the schedule relationship
+         $query = $model->newQuery();
 
         // Filter by authenticated user
         if ($this->assignedId) {
@@ -72,16 +70,14 @@ class monthlyDataTable extends DataTable
             $query->where('assigned_id', Auth::id());
         }
 
-         // Filter by current month from the schedule relationship (date format: 2025-08-01)
-        $currentMonth = $this->month ?: Carbon::now()->month;
-        $currentYear = Carbon::now()->year;
+        // Filter by current day using start_date column (format: 2025-08-20 09:16:00)
+        $targetDate = $this->date ? Carbon::parse($this->date) : Carbon::today();
         
-        // Format the date to match your database format (YYYY-MM-01)
-        $targetDate = sprintf('%04d-%02d-01', $currentYear, $currentMonth);
+        // Use whereBetween to capture the entire day
+        $startOfDay = $targetDate->copy()->startOfDay();
+        $endOfDay = $targetDate->copy()->endOfDay();
         
-        $query->whereHas('schedule', function($q) use ($targetDate) {
-            $q->where('month', $targetDate);
-        });
+        $query->whereBetween('start_date', [$startOfDay, $endOfDay]);
 
         return $query;
     }
@@ -92,18 +88,18 @@ class monthlyDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('monthly-table')
-            ->columns($this->getColumns())
-            ->minifiedAjax()
-            ->selectStyleSingle()
-            ->buttons([
-                Button::make('excel'),
-                Button::make('csv'),
-                Button::make('pdf'),
-                Button::make('print'),
-                Button::make('reset'),
-                Button::make('reload')
-            ]);
+                    ->setTableId('daily-table')
+                    ->columns($this->getColumns())
+                    ->minifiedAjax()
+                    ->selectStyleSingle()
+                    ->buttons([
+                        Button::make('excel'),
+                        Button::make('csv'),
+                        Button::make('pdf'),
+                        Button::make('print'),
+                        Button::make('reset'),
+                        Button::make('reload')
+                    ]);
     }
 
     /**
@@ -112,7 +108,7 @@ class monthlyDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-              Column::make('id'),
+             Column::make('id'),
             Column::make('order_number'),
             Column::make('title'),
             Column::make('description'),
@@ -130,6 +126,6 @@ class monthlyDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'monthly_' . date('YmdHis');
+        return 'daily_' . date('YmdHis');
     }
 }

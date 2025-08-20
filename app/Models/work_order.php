@@ -17,4 +17,9 @@ public function assigned(){
     return $this->belongsTo(user::class,'assigned_id');
 }
 
+public function requests()
+    {
+        return $this->hasMany(request::class);
+    }
+
 }

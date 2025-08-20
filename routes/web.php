@@ -32,6 +32,11 @@ use App\Http\Controllers\Financial\{
 use App\Http\Controllers\HR\{
     InfoController
 };
+use App\Http\Controllers\Technician\{
+    DayController,
+    MonthController,
+    InventoryController
+};
 
 Route::get('/', function () {
     return view('welcome');
@@ -152,6 +157,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/invoice', [ChartController::class, 'invoice'])->name('invoice.index');
         Route::get('/reports', [ChartController::class, 'reports'])->name('reports.index');
     });
+    //Technician panel
+    Route::prefix('assigments')->group(function () {
+    Route::get('/month', [MonthController::class, 'index'])->name('month.index');
+    Route::get('/day', [DayController::class, 'index'])->name('day.index');
+    Route::get('/day/order/{id}', [DayController::class, 'details'])->name('details.index');
+    });
+    //Technician inventory panel
+    Route::prefix('my_items')->group(function () {
+    Route::get('/', [InventoryController::class, 'index'])->name('inventory.index');
+    Route::get('/warehouse', [InventoryController::class, 'getWarehouse'])->name('Warehouse.get');
+    Route::post('/create', [InventoryController::class, 'store'])->name('request.create');
+    });    
 });
 
 
