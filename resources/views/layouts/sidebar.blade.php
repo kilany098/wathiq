@@ -84,9 +84,9 @@
                             </a>
                         </li>
                         <li class="side-nav-item">
-                            <a href="#" class="side-nav-link">
+                            <a href="{{route('request.index')}}" class="side-nav-link">
                                 <span class="menu-text">Requests</span>
-                                <span class="badge bg-danger rounded">0 Requests</span>
+                                <span class="badge bg-danger rounded">{{$pending_req}} Requests</span>
                             </a>
                         </li>
                           <li class="side-nav-item">
@@ -156,6 +156,12 @@
                 <div class="collapse" id="sidebarOperations">
                     <ul class="sub-menu">
                         <li class="side-nav-item">
+                            <a href="{{route('pending.index')}}" class="side-nav-link">
+                                <span class="menu-text">Pending Orders</span>
+                                <span class="badge bg-danger rounded">0 order</span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
                             <a href="{{route('attribution.index')}}" class="side-nav-link">
                                 <span class="menu-text">Attributions</span>
                             </a>
@@ -170,11 +176,7 @@
                                 <span class="menu-text">Urgent Orders</span>
                             </a>
                         </li>
-                        <li class="side-nav-item">
-                            <a href="{{route('pending.index')}}" class="side-nav-link">
-                                <span class="menu-text">Pending Orders</span>
-                            </a>
-                        </li>
+                        
                     </ul>
                 </div>
             </li>

@@ -13,7 +13,8 @@ use App\Http\Controllers\Inventory\{
     CategoryController,
     ItemController,
     StockController,
-    TransactionController
+    TransactionController,
+    RequestController
 };
 use App\Http\Controllers\Operation\{
     ContractController,
@@ -104,6 +105,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/', [TransactionController::class, 'index'])->name('transaction.index');
         Route::post('/create', [TransactionController::class, 'store'])->name('transaction.create');
     });
+    //Request panel
+    Route::prefix('requests')->group(function () {
+    Route::get('/', [RequestController::class, 'index'])->name('request.index');
+     Route::post('/{id}/accept', [RequestController::class, 'accept'])->name('request.accept');
+    Route::post('/{id}/decline', [RequestController::class, 'decline'])->name('request.decline');
+
+    });
     //Stock Panel
     Route::get('/min_stock', [StockController::class, 'index'])->name('stock.index');
     //Contract Panel
@@ -162,6 +170,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/month', [MonthController::class, 'index'])->name('month.index');
     Route::get('/day', [DayController::class, 'index'])->name('day.index');
     Route::get('/day/order/{id}', [DayController::class, 'details'])->name('details.index');
+    Route::post('/submit', [DayController::class, 'store'])->name('report.submit');
     });
     //Technician inventory panel
     Route::prefix('my_items')->group(function () {

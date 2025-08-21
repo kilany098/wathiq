@@ -21,5 +21,8 @@ public function requests()
     {
         return $this->hasMany(request::class);
     }
+    public function report(){
+        return $this->hasOne(report::class);
+    }
 
 }
