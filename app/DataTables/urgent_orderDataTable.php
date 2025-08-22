@@ -21,7 +21,7 @@ class urgent_orderDataTable extends DataTable
      */
     protected $priority;
 
-public function forPriority($priority)
+    public function forPriority($priority)
     {
         $this->priority = $priority;
         return $this;
@@ -30,7 +30,7 @@ public function forPriority($priority)
     {
         return (new EloquentDataTable($query))
             ->setRowId('id')
-             ->addColumn('start_time', function ($work_order) {
+            ->addColumn('start_time', function ($work_order) {
                 if (!$work_order->start_date) {
                     return '-';
                 }
@@ -72,7 +72,7 @@ public function forPriority($priority)
                     </div>';
                 return $actionHtml;
             })
-             ->rawColumns(['action']);
+            ->rawColumns(['action']);
     }
 
     /**
@@ -83,11 +83,11 @@ public function forPriority($priority)
     public function query(work_order $model): QueryBuilder
     {
         $query = $model->newQuery();
-       
+
         if ($this->priority) {
             $query->where('priority', $this->priority);
         }
-        
+
         return $query;
     }
 
@@ -97,18 +97,18 @@ public function forPriority($priority)
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('urgent_order-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('urgent_order-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            ]);
     }
 
     /**
@@ -126,7 +126,6 @@ public function forPriority($priority)
             Column::make('start_time'),
             Column::make('end_time'),
             Column::make('assigned_to'),
-            Column::make('completion_notes'),
         ];
     }
 

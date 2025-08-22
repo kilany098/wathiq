@@ -111,7 +111,6 @@ class work_orderDataTable extends DataTable
             Column::make('start_time'),
             Column::make('end_time'),
             Column::make('assigned_to'),
-            Column::make('completion_notes'),
         ];
     }
 
