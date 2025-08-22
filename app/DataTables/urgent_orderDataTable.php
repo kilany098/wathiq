@@ -117,15 +117,15 @@ class urgent_orderDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
-            Column::make('order_number'),
-            Column::make('title'),
-            Column::make('description'),
-            Column::make('priority'),
-            Column::make('status'),
-            Column::make('start_time'),
-            Column::make('end_time'),
-            Column::make('assigned_to'),
+            Column::make('id')->title(__('id')),
+            Column::make('order_number')->title(__('order number')),
+            Column::make('title')->title(__('title')),
+            Column::make('description')->title(__('description')),
+            Column::make('priority')->title(__('priority')),
+            Column::make('status')->title(__('status')),
+            Column::make('start_time')->title(__('start time')),
+            Column::make('end_time')->title(__('end time')),
+            Column::make('assigned_to')->title(__('assigned to')),
         ];
     }
 

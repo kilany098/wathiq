@@ -3,8 +3,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editUserModalLabel">Update Client</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="editUserModalLabel">{{__('Update Client')}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{__('Close')}}"></button>
             </div>
             <div class="modal-body">
                 <form id="editClientForm" class="row" method="POST" enctype="multipart/form-data">
@@ -13,90 +13,90 @@
                     <input type="hidden" id="editClientId" name="id">
                     
                     <div class="mb-3 col-md-12">
-                        <label for="edit_name" class="form-label">Name*</label>
+                        <label for="edit_name" class="form-label">{{__('Name')}}*</label>
                         <input type="text" class="form-control" id="edit_name" name="name" required maxlength="255">
                     </div>
 
                     <div class="mb-3 col-md-12">
-                        <label for="edit_contact_phone" class="form-label">Contact Phone* (Saudi format)</label>
+                        <label for="edit_contact_phone" class="form-label">{{__('Contact Phone')}}* ({{__('Saudi format')}})</label>
                         <input type="tel" class="form-control" id="edit_contact_phone" name="contact_phone" 
                                required maxlength="15" pattern="^(009665|9665|\+9665|05|5)([0-9]{8})$"
-                               title="Please enter a valid Saudi phone number (e.g., 05XXXXXXXX or +9665XXXXXXXX)">
+                               title="{{__('Please enter a valid Saudi phone number')}} (e.g., 05XXXXXXXX or +9665XXXXXXXX)">
                     </div>
 
                     <div class="mb-3 col-md-12">
-                        <label for="edit_email" class="form-label">Email*</label>
+                        <label for="edit_email" class="form-label">{{__('Email')}}*</label>
                         <input type="email" class="form-control" id="edit_email" name="email" required>
                     </div>
 
                     <div class="mb-3 col-md-12">
-                        <label for="edit_phone" class="form-label">Phone*</label>
+                        <label for="edit_phone" class="form-label">{{__('Phone')}}*</label>
                         <input type="tel" class="form-control" id="edit_phone" name="phone" required>
                     </div>
 
                     <div class="mb-3 col-md-12">
-                        <label for="edit_type" class="form-label">Type*</label>
+                        <label for="edit_type" class="form-label">{{__('Type')}}*</label>
                         <select class="form-control" id="edit_type" name="type" required>
-                            <option value="" disabled selected>Choose Type</option>
-                            <option value="individual">Individual</option>
-                            <option value="company">Company</option>
+                            <option value="" disabled selected>{{__('Choose Type')}}</option>
+                            <option value="individual">{{__('Individual')}}</option>
+                            <option value="company">{{__('Company')}}</option>
                         </select>
                     </div>
 
                     <div class="mb-3 col-md-12" id="edit_tax_number_container" style="display: none;">
-                        <label for="edit_tax_number" class="form-label">Tax Number</label>
+                        <label for="edit_tax_number" class="form-label">{{__('Tax Number')}}</label>
                         <input type="text" class="form-control" id="edit_tax_number" name="tax_number" maxlength="50">
                     </div>
 
                     <div class="mb-3 col-md-12" id="edit_commercial_number_container" style="display: none;">
-                        <label for="edit_commercial_number" class="form-label">Commercial Number (10 digits)</label>
+                        <label for="edit_commercial_number" class="form-label">{{__('Commercial Number (10 digits)')}}</label>
                         <input type="text" class="form-control" id="edit_commercial_number" name="commercial_number" 
-                               pattern="[0-9]{10}" title="Please enter exactly 10 digits">
+                               pattern="[0-9]{10}" title="{{__('Please enter exactly 10 digits')}}">
                     </div>
 
                     <div class="mb-3 col-md-12">
-                        <label for="edit_status" class="form-label">Status*</label>
+                        <label for="edit_status" class="form-label">{{__('Status')}}*</label>
                         <select class="form-control" id="edit_status" name="status" required>
-                            <option value="" disabled selected>Select Status</option>
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
+                            <option value="" disabled selected>{{__('Select Status')}}</option>
+                            <option value="1">{{__('Active')}}</option>
+                            <option value="0">{{__('Inactive')}}</option>
                         </select>
                     </div>
 
                     <div class="mb-3 col-md-12">
-                        <label for="edit_commercial_register" class="form-label">Commercial Register File (PDF, JPG, PNG, max 5MB)</label>
+                        <label for="edit_commercial_register" class="form-label">{{__('Commercial Register File (PDF, JPG, PNG, max 5MB)')}}</label>
                         <input type="file" class="form-control" id="edit_commercial_register" name="commercial_register" 
                                accept=".pdf,.jpg,.png">
-                        <small class="text-muted">Leave empty to keep existing file</small>
+                        <small class="text-muted">{{__('Leave empty to keep existing file')}}</small>
                     </div>
 
                     <div class="mb-3 col-md-12">
-                        <label for="edit_personal_id" class="form-label">Personal ID File (PDF, JPG, PNG, max 5MB)</label>
+                        <label for="edit_personal_id" class="form-label">{{__('Personal ID File (PDF, JPG, PNG, max 5MB)')}}</label>
                         <input type="file" class="form-control" id="edit_personal_id" name="personal_id" 
                                accept=".pdf,.jpg,.png">
-                        <small class="text-muted">Leave empty to keep existing file</small>
+                        <small class="text-muted">{{__('Leave empty to keep existing file')}}</small>
                     </div>
 
                       <div class="mb-3 col-md-12">
-                        <label for="edit_national_address" class="form-label">National Address File (PDF, JPG, PNG, max 5MB)</label>
+                        <label for="edit_national_address" class="form-label">{{__('National Address File (PDF, JPG, PNG, max 5MB)')}}</label>
                         <input type="file" class="form-control" id="edit_national_address" name="national_address" 
                                accept=".pdf,.jpg,.png">
-                        <small class="text-muted">Leave empty to keep existing file</small>
+                        <small class="text-muted">{{__('Leave empty to keep existing file')}}</small>
                     </div>
 
                       <div class="mb-3 col-md-12">
-                        <label for="edit_IBAN_number" class="form-label">IBAN Number File (PDF, JPG, PNG, max 5MB)</label>
+                        <label for="edit_IBAN_number" class="form-label">{{__('IBAN Number File (PDF, JPG, PNG, max 5MB)')}}</label>
                         <input type="file" class="form-control" id="edit_IBAN_number" name="IBAN_number" 
                                accept=".pdf,.jpg,.png">
-                        <small class="text-muted">Leave empty to keep existing file</small>
+                        <small class="text-muted">{{__('Leave empty to keep existing file')}}</small>
                     </div>
 
                     
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" form="editClientForm" class="btn btn-primary" id="editUserButton">Update Client</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('Cancel')}}</button>
+                <button type="submit" form="editClientForm" class="btn btn-primary" id="editUserButton">{{__('Update Client')}}</button>
             </div>
         </div>
     </div>

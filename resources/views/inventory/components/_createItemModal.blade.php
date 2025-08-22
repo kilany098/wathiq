@@ -2,31 +2,31 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createUserModalLabel">Create item</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="createUserModalLabel">{{__('Create Item')}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{__('Close')}}"></button>
             </div>
             <div class="modal-body">
                 <form id="createItemForm" action="{{ route('item.create') }}" class="row" method="POST" >
                     @csrf
                     <div class="mb-3 col-md-12">
-                        <label for="name" class="form-label">Name</label>
+                        <label for="name" class="form-label">{{__('Name')}}</label>
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
 
                     <div class="mb-3 col-md-12">
-                        <label for="code" class="form-label">Code</label>
+                        <label for="code" class="form-label">{{__('Code')}}</label>
                         <input type="text" class="form-control" id="code" name="code" required>
                     </div>
 
                     <div class="mb-3 col-md-12">
-                        <label for="description" class="form-label">Description</label>
+                        <label for="description" class="form-label">{{__('Description')}}</label>
                         <input type="text" class="form-control" id="description" name="description" required>
                     </div>
 
                     <div class="mb-3 col-md-12">
-                        <label for="category_id" class="form-label">Category</label>
+                        <label for="category_id" class="form-label">{{__('Category')}}</label>
                         <select class="form-control" id="category_id" name="category_id" required>
-                            <option value="" disabled selected>Choose a category</option>
+                            <option value="" disabled selected>{{__('Choose a category')}}</option>
                             @foreach ($categories as $category)
                             <option value={{$category->id}}>{{$category->name}}</option>
                             @endforeach
@@ -36,8 +36,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" form="createItemForm" class="btn btn-primary" id="createUserButton">Create item</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('Cancel')}}</button>
+                <button type="submit" form="createItemForm" class="btn btn-primary" id="createUserButton">{{__('Create Item')}}</button>
             </div>
         </div>
     </div>

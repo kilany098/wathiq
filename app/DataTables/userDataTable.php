@@ -83,6 +83,11 @@ class userDataTable extends DataTable
      */
     public function html(): HtmlBuilder
     {
+
+        $localLang = app()->getLocale();
+
+        $languageUrl = $localLang == 'ar' ? url('assets/dataTables/i18n/ar.json') : '';
+        
         return $this->builder()
             ->setTableId('user-table')
             ->columns($this->getColumns())
@@ -105,15 +110,16 @@ class userDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
-            Column::make('image'),
-            Column::make('full_name'),
-            Column::make('email'),
-            Column::make('phone'),
-            Column::make('role'),
-            Column::make('status'),
-            Column::make('created_at'),
+            Column::make('id')->title(__('id')),
+            Column::make('image')->title(__('image')),
+            Column::make('full_name')->title(__('full name')),
+            Column::make('email')->title(__('email')),
+            Column::make('phone')->title(__('phone')),
+            Column::make('role')->title(__('role')),
+            Column::make('status')->title(__('status')),
+            Column::make('created_at')->title(__('created at')),
             Column::computed('action')
+                ->title(__('action'))
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)

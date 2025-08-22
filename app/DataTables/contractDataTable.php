@@ -137,26 +137,28 @@ class contractDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
-            Column::make('client'),
-            Column::make('contract_number'),
-            Column::make('type'),
-            Column::make('start_date'),
-            Column::make('end_date'),
-            Column::make('total_value'),
-            Column::make('visits'),
-            Column::make('payment_terms'),
-            Column::make('terms_and_conditions'),
-            Column::make('note'),
-            Column::make('status'),
-            Column::make('created_by'),
-            Column::make('operator'),
+            Column::make('id')->title(__('id')),
+            Column::make('client')->title(__('client')),
+            Column::make('contract_number')->title(__('contract number')),
+            Column::make('type')->title(__('type')),
+            Column::make('start_date')->title(__('start date')),
+            Column::make('end_date')->title(__('end date')),
+            Column::make('total_value')->title(__('total value')),
+            Column::make('visits')->title(__('visits')),
+            Column::make('payment_terms')->title(__('payment terms')),
+            Column::make('terms_and_conditions')->title(__('terms and conditions')),
+            Column::make('note')->title(__('note')),
+            Column::make('status')->title(__('status')),
+            Column::make('created_by')->title(__('created by')),
+            Column::make('operator')->title(__('Operator')),
             Column::computed('files')
+                ->title(__('files'))
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)
                 ->addClass('text-center'),
             Column::computed('action')
+                ->title(__('action'))
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)

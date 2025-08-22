@@ -3,16 +3,16 @@
 @section('content')
 <div class="page-title-head d-flex align-items-center gap-2">
     <div class="flex-grow-1">
-        <h4 class="fs-18 fw-bold mb-0">contracts</h4>
+        <h4 class="fs-18 fw-bold mb-0">{{__('contracts')}}</h4>
     </div>
 
     <div class="text-end">
         <ol class="breadcrumb m-0 py-0 fs-13">
-            <li class="breadcrumb-item"><a href="javascript: void(0);">contracts</a></li>
-            <li class="breadcrumb-item active">Operation</li>
+            <li class="breadcrumb-item"><a href="javascript: void(0);">{{__('contracts')}}</a></li>
+            <li class="breadcrumb-item active">{{__('Operation')}}</li>
         </ol>
 
-        <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#createContractModal">Create Contract</button>
+        <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#createContractModal">{{__('Create Contract')}}</button>
     </div>
 </div>
 
@@ -33,14 +33,14 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="editContractModalLabel">Edit Contract </h5>
+                <h5 class="modal-title" id="editContractModalLabel">{{__('Edit Contract')}}</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 
                 <div class="alert alert-warning mb-4">
                     <i class="fas fa-exclamation-triangle me-2"></i>
-                    <strong>Important:</strong> Modifying the contract at this stage will require the operations team to reassess and potentially reallocate all scheduled visits.
+                    <strong>{{__('Important')}}:</strong> {{__('Modifying the contract at this stage will require the operations team to reassess and potentially reallocate all scheduled visits.')}}
                 </div>
                 
                 <form id="editContractForm" class="row g-3">
@@ -52,13 +52,13 @@
                     <div class="col-md-6">
                         <div class="card h-100">
                             <div class="card-header bg-light">
-                                <h6 class="mb-0">Client Information</h6>
+                                <h6 class="mb-0">{{__('Client Information')}}</h6>
                             </div>
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <label for="edit_client_id" class="form-label">Client *</label>
+                                    <label for="edit_client_id" class="form-label">{{__('Client')}} *</label>
                                     <select class="form-select" id="edit_client_id" name="client_id" required>
-                                        <option value="">Select Client</option>
+                                        <option value="">{{__('Select Client')}}</option>
                                         @foreach($clients as $client)
                                         <option value="{{ $client->id }}">{{ $client->name }}</option>
                                         @endforeach
@@ -66,9 +66,9 @@
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label for="edit_operated_by" class="form-label">Operator *</label>
+                                    <label for="edit_operated_by" class="form-label">{{__('Operator')}} *</label>
                                     <select class="form-select" id="edit_operated_by" name="operated_by" required>
-                                        <option value="">Select Operator</option>
+                                        <option value="">{{__('Select Operator')}}</option>
                                         @foreach($operators as $operator)
                                         <option value="{{ $operator->id }}">{{ $operator->full_name }}</option>
                                         @endforeach
@@ -76,13 +76,13 @@
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label for="edit_type" class="form-label">Service Type *</label>
+                                    <label for="edit_type" class="form-label">{{__('Service Type')}} *</label>
                                     <select class="form-select" id="edit_type" name="type" required>
-                                        <option value="">Select Type</option>
-                                        <option value="Pest Control">Pest Control</option>
-                                        <option value="Agricultural">Agricultural</option>
-                                        <option value="Industrial">Industrial</option>
-                                        <option value="Other">Other</option>
+                                        <option value="">{{__('Select Type')}}</option>
+                                        <option value="Pest Control">{{__('Pest Control')}}</option>
+                                        <option value="Agricultural">{{__('Agricultural')}}</option>
+                                        <option value="Industrial">{{__('Industrial')}}</option>
+                                        <option value="Other">{{__('Other')}}</option>
                                     </select>
                                 </div>
 
@@ -94,39 +94,39 @@
                     <div class="col-md-6">
                         <div class="card h-100">
                             <div class="card-header bg-light">
-                                <h6 class="mb-0">Service Details</h6>
+                                <h6 class="mb-0">{{__('Service Details')}}</h6>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="edit_visits" class="form-label">Visits *</label>
+                                        <label for="edit_visits" class="form-label">{{__('Visits')}} *</label>
                                         <input type="number" class="form-control" id="edit_visits" name="visits" min="1" required>
                                     </div>
                                 </div>
                                 
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="edit_start_date" class="form-label">Start Date *</label>
+                                        <label for="edit_start_date" class="form-label">{{__('Start Date')}} *</label>
                                         <input type="date" class="form-control" id="edit_start_date" name="start_date" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label for="edit_end_date" class="form-label">End Date *</label>
+                                        <label for="edit_end_date" class="form-label">{{__('End Date')}} *</label>
                                         <input type="date" class="form-control" id="edit_end_date" name="end_date" required>
                                     </div>
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label for="edit_payment_terms" class="form-label">Payment Terms *</label>
+                                    <label for="edit_payment_terms" class="form-label">{{__('Payment Terms')}} *</label>
                                     <select class="form-select" id="edit_payment_terms" name="payment_terms" required>
-                                        <option value="monthly">Monthly</option>
-                                        <option value="quarterly">Quarterly</option>
-                                        <option value="annual">Annual</option>
-                                        <option value="custom">Custom</option>
+                                        <option value="monthly">{{__('monthly')}}</option>
+                                        <option value="quarterly">{{__('quarterly')}}</option>
+                                        <option value="annual">{{__('annual')}}</option>
+                                        <option value="custom">{{__('custom')}}</option>
                                     </select>
                                 </div>
                                 
                                 <div class="mb-0" id="edit_custom_terms_group" style="display:none;">
-                                    <label for="edit_custom_payment_terms" class="form-label">Custom Terms</label>
+                                    <label for="edit_custom_payment_terms" class="form-label">{{__('Custom Terms')}}</label>
                                     <input type="text" class="form-control" id="edit_custom_payment_terms" name="custom_payment_terms">
                                 </div>
                             </div>
@@ -137,16 +137,16 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header bg-light">
-                                <h6 class="mb-0">Additional Information</h6>
+                                <h6 class="mb-0">{{__('Additional Information')}}</h6>
                             </div>
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <label for="edit_terms_and_conditions" class="form-label">Terms & Conditions</label>
+                                    <label for="edit_terms_and_conditions" class="form-label">{{__('Terms & Conditions')}}</label>
                                     <textarea class="form-control" id="edit_terms_and_conditions" name="terms_and_conditions" rows="2" maxlength="255"></textarea>
                                 </div>
                                 
                                 <div class="mb-0">
-                                    <label for="edit_note" class="form-label">Internal Notes</label>
+                                    <label for="edit_note" class="form-label">{{__('Internal Notes')}}</label>
                                     <textarea class="form-control" id="edit_note" name="note" rows="2" maxlength="255"></textarea>
                                 </div>
                             </div>
@@ -155,9 +155,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">{{__('Cancel')}}</button>
                 <button type="submit" form="editContractForm" class="btn btn-primary" id="editContractButton">
-                    <i class="fas fa-save me-2"></i>Update Contract
+                    <i class="fas fa-save me-2"></i>{{__('Update Contract')}}
                 </button>
             </div>
         </div>

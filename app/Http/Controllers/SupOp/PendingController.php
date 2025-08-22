@@ -33,10 +33,10 @@ class PendingController extends Controller
         $order = work_order::findOrFail($id);
 
         $order->update([
-            'status' => 'refused'
+            'status' => 'assigned'
         ]);
 
         return redirect()->back()
-            ->with('success', 'Request declined successfully.');
+            ->with('success', 'Order declined successfully.');
     }
 }

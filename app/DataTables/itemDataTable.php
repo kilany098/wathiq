@@ -91,13 +91,14 @@ class itemDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-           Column::make('id'),
-            Column::make('name'),
-            Column::make('code'),
-            Column::make('category'),
-            Column::make('description'),
-            Column::make('created_at'),
+           Column::make('id')->title(__('id')),
+            Column::make('name')->title(__('name')),
+            Column::make('code')->title(__('code')),
+            Column::make('category')->title(__('category')),
+            Column::make('description')->title(__('description')),
+            Column::make('created_at')->title(__('created at')),
             Column::computed('action')
+                ->title(__('action'))
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)

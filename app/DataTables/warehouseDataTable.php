@@ -99,14 +99,15 @@ class warehouseDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
-            Column::make('name'),
-            Column::make('location'),
-            Column::make('manager'),
-            Column::make('description'),
-            Column::make('status'),
-            Column::make('created_at'),
+             Column::make('id')->title(__('id')),
+            Column::make('name')->title(__('name')),
+            Column::make('location')->title(__('location')),
+            Column::make('manager')->title(__('manager')),
+            Column::make('description')->title(__('description')),
+            Column::make('status')->title(__('status')),
+            Column::make('created_at')->title(__('created at')),
             Column::computed('action')
+                ->title(__('action'))
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)

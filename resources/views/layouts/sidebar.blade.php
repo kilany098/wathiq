@@ -25,39 +25,39 @@
         <!--- Sidenav Menu -->
         <ul class="side-nav">
             @role('superadmin')
-            <li class="side-nav-title">Navigation</li>
+            <li class="side-nav-title">{{__('Navigation')}}</li>
 
             <li class="side-nav-item">
                 <a href="/dashboard" class="side-nav-link">
                     <span class="menu-icon"><i data-lucide="airplay"></i></span>
-                    <span class="menu-text"> Dashboard </span>
+                    <span class="menu-text"> {{__('Dashboard')}} </span>
                 </a>
             </li>
 
-            <li class="side-nav-title">Manage Users</li>
+            <li class="side-nav-title">{{__('Manage Users')}}</li>
 
             <li class="side-nav-item">
                 <a href="{{route('users.index')}}" class="side-nav-link">
                     <span class="menu-icon"><i data-lucide="users"></i></span>
-                    <span class="menu-text"> Users </span>
+                    <span class="menu-text"> {{__('Users')}} </span>
                 </a>
             </li>
 
 
-            <li class="side-nav-title">Manage HR</li>
+            <li class="side-nav-title">{{__('Manage HR')}}</li>
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarHR" aria-expanded="false" aria-controls="sidebarOperations"
                     class="side-nav-link">
                     <span class="menu-icon"><i data-lucide="briefcase" class="w-5 h-5 text-blue-500"></i></span>
-                    <span class="menu-text">HR</span>
+                    <span class="menu-text">{{__('HR')}}</span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebarHR">
                     <ul class="sub-menu">
                         <li class="side-nav-item">
                             <a href="{{route('hr.index')}}" class="side-nav-link">
-                                <span class="menu-text">Contracts</span>
+                                <span class="menu-text">{{__('Contracts')}}</span>
                             </a>
                         </li>
                     </ul>
@@ -66,47 +66,47 @@
 
 
 
-            <li class="side-nav-title">Manage Inventory</li>
+            <li class="side-nav-title">{{__('Manage Inventory')}}</li>
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarInventory" aria-expanded="false" aria-controls="sidebarInventory"
                     class="side-nav-link">
                     <span class="menu-icon"><i data-lucide="package" class="w-5 h-5 text-blue-500"></i></span>
-                    <span class="menu-text">Inventory</span>
+                    <span class="menu-text">{{__('Inventory')}}</span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebarInventory">
                     <ul class="sub-menu">
                          <li class="side-nav-item">
                             <a href="{{route('stock.index')}}" class="side-nav-link">
-                                <span class="menu-text">Stock</span>
-                                <span class="badge bg-danger rounded">{{$stock_min}} Stock Alert</span>
+                                <span class="menu-text">{{__('Stock')}}</span>
+                                <span class="badge bg-danger rounded">{{$stock_min}} {{__('Stock Alert')}}</span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{route('request.index')}}" class="side-nav-link">
-                                <span class="menu-text">Requests</span>
-                                <span class="badge bg-danger rounded">{{$pending_req}} Requests</span>
+                                <span class="menu-text">{{__('Requests')}}</span>
+                                <span class="badge bg-danger rounded">{{$pending_req}} {{__('Requests')}}</span>
                             </a>
                         </li>
                           <li class="side-nav-item">
                             <a href="{{route('transaction.index')}}" class="side-nav-link">
-                                <span class="menu-text">Transactions</span>
+                                <span class="menu-text">{{__('Transactions')}}</span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{route('warehouse.index')}}" class="side-nav-link">
-                                <span class="menu-text">Warehouses</span>
+                                <span class="menu-text">{{__('Warehouses')}}</span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{route('category.index')}}" class="side-nav-link">
-                                <span class="menu-text">Categories</span>
+                                <span class="menu-text">{{__('Categories')}}</span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{route('item.index')}}" class="side-nav-link">
-                                <span class="menu-text">Items</span>
+                                <span class="menu-text">{{__('Items')}}</span>
                             </a>
                         </li>
                           
@@ -117,26 +117,26 @@
             </li>
 
 
-            <li class="side-nav-title">Manage Sales</li>
+            <li class="side-nav-title">{{__('Manage Sales')}}</li>
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarSales" aria-expanded="false" aria-controls="sidebarOperations"
                     class="side-nav-link">
                     <span class="menu-icon"><i data-lucide="trending-up" class="w-5 h-5 text-blue-500"></i></span>
-                    <span class="menu-text">Sales</span>
+                    <span class="menu-text">{{__('Sales')}}</span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebarSales">
                     <ul class="sub-menu">
                         <li class="side-nav-item">
                             <a href="{{route('client.index')}}" class="side-nav-link">
-                                <span class="menu-text">Clients</span>
+                                <span class="menu-text">{{__('Clients')}}</span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{route('contract.index')}}" class="side-nav-link">
-                                <span class="menu-text">Contracts</span>
-                                <span class="badge bg-danger rounded">{{$new_contract}} New</span>
+                                <span class="menu-text">{{__('Contracts')}}</span>
+                                <span class="badge bg-danger rounded">{{$new_contract}} {{__('New')}}</span>
                             </a>
                         </li>
                     </ul>
@@ -144,36 +144,36 @@
             </li>
 
 
-            <li class="side-nav-title">Manage Operations</li>
+            <li class="side-nav-title">{{__('Manage Operations')}}</li>
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarOperations" aria-expanded="false" aria-controls="sidebarOperations"
                     class="side-nav-link">
                     <span class="menu-icon"><i data-lucide="activity" class="w-5 h-5 text-blue-500"></i></span>
-                    <span class="menu-text">Operations</span>
+                    <span class="menu-text">{{__('Operations')}}</span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebarOperations">
                     <ul class="sub-menu">
                         <li class="side-nav-item">
                             <a href="{{route('pending.index')}}" class="side-nav-link">
-                                <span class="menu-text">Pending Orders</span>
-                                <span class="badge bg-danger rounded">0 order</span>
+                                <span class="menu-text">{{__('Pending Orders')}}</span>
+                                <span class="badge bg-danger rounded">{{$pending_orders}} {{__('order')}}</span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{route('attribution.index')}}" class="side-nav-link">
-                                <span class="menu-text">Attributions</span>
+                                <span class="menu-text">{{__('Attributions')}}</span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{route('order.index')}}" class="side-nav-link">
-                                <span class="menu-text">Work Orders</span>
+                                <span class="menu-text">{{__('Work Orders')}}</span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{route('urgent.index')}}" class="side-nav-link">
-                                <span class="menu-text">Urgent Orders</span>
+                                <span class="menu-text">{{__('Urgent Orders')}}</span>
                             </a>
                         </li>
                         
@@ -182,35 +182,35 @@
             </li>
 
 
-            <li class="side-nav-title">Financial Management</li>
+            <li class="side-nav-title">{{__('Financial Management')}}</li>
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarFinancial" aria-expanded="false" aria-controls="sidebarOperations"
                     class="side-nav-link">
                     <span class="menu-icon"><i data-lucide="pie-chart" class="w-5 h-5 text-green-500"></i></span>
-                    <span class="menu-text">Financial</span>
+                    <span class="menu-text">{{__('Financial')}}</span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebarFinancial">
                     <ul class="sub-menu">
                         <li class="side-nav-item">
                             <a href="{{route('chart.index')}}" class="side-nav-link">
-                                <span class="menu-text">Dynamic Chart</span>
+                                <span class="menu-text">{{__('Dynamic Chart')}}</span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{route('journal.index')}}" class="side-nav-link">
-                                <span class="menu-text">Journal Entries</span>
+                                <span class="menu-text">{{__('Journal Entries')}}</span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{route('invoice.index')}}" class="side-nav-link">
-                                <span class="menu-text">Invoices</span>
+                                <span class="menu-text">{{__('Invoices')}}</span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{route('reports.index')}}" class="side-nav-link">
-                                <span class="menu-text">Reports</span>
+                                <span class="menu-text">{{__('Reports')}}</span>
                             </a>
                         </li>
                     </ul>
@@ -219,25 +219,25 @@
 
             @endrole
             @role('technician')
-            <li class="side-nav-title">Technical Assignments</li>
+            <li class="side-nav-title">{{__('Technical Assignments')}}</li>
 
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarTechnical" aria-expanded="false" aria-controls="sidebarOperations"
                     class="side-nav-link">
                     <span class="menu-icon"><i data-lucide="clipboard-list" class="w-5 h-5 text-green-500"></i></span>
-                    <span class="menu-text">Assignments</span>
+                    <span class="menu-text">{{__('Assignments')}}</span>
                     <span class="menu-arrow"></span>
                 </a>
                 <div class="collapse" id="sidebarTechnical">
                     <ul class="sub-menu">
                         <li class="side-nav-item">
                             <a href="{{route('month.index')}}" class="side-nav-link">
-                                <span class="menu-text">Monthly Assignments</span>
+                                <span class="menu-text">{{__('Monthly Assignments')}}</span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{route('day.index')}}" class="side-nav-link">
-                                <span class="menu-text">Daily Assignments</span>
+                                <span class="menu-text">{{__('Daily Assignments')}}</span>
                             </a>
                         </li>
                     </ul>
@@ -247,7 +247,7 @@
             <li class="side-nav-item">
                 <a href="{{route('inventory.index')}}" class="side-nav-link">
                     <span class="menu-icon"><i data-lucide="box" class="w-5 h-5 text-green-500"></i></span>
-                    <span class="menu-text"> My Inventory </span>
+                    <span class="menu-text"> {{__('My Inventory')}} </span>
                 </a>
             </li>
             @endrole

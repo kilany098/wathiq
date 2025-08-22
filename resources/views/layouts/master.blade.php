@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
 
 <head>
     <meta charset="UTF-8">
@@ -18,13 +18,30 @@
     <!-- Icons css -->
     <link href="{{ asset('asset/admin/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Datatable -->
-    <link href="//cdn.datatables.net/2.3.1/css/dataTables.dataTables.min.css" rel="stylesheet">
+   <link href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" rel="stylesheet">
+    @if (app()->getLocale() == 'ar')
+    <link href="https://cdn.datatables.net/v/dt/dt-2.2.2/datatables.rtl.min.css" rel="stylesheet" integrity="sha384-2vMryTPZxTZDZ3GnMBDVQV8OtmoutdrfJxnDTg0bVam9mZhi7Zr3J1+lkVFRr71f" crossorigin="anonymous">
+    @endif
     <!-- Sweet Alert css-->
     <link href=" {{ asset('asset/admin/vendor/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
-
+    
+    @if (app()->getLocale() == 'ar')
+<style>
+ /* RTL Overrides for Bootstrap 5 */
+       .page-content{
+        margin-left: 0!important;
+        margin-right: 240px!important;
+       }
+       .side-nav{
+        padding-right: 0!important;
+        padding-left: 40px!important;
+       }
+       
+</style>
+@endif
 </head>
 
-<body>
+<body class="{{ app()->getLocale() == 'ar' ? 'rtl-mode' : 'ltr-mode' }}">
 
     <!-- Begin page -->
     <div class="wrapper">
@@ -57,6 +74,7 @@
     <!-- Theme Settings -->
     @include('layouts.theme-setting')
     @include('layouts.script')
+   
 </body>
 
 </html>

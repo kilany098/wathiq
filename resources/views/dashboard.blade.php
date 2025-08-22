@@ -4,12 +4,12 @@
  <div class="container-fluid mt-4">
         <!-- Header -->
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2>Employee Performance Dashboard</h2>
+            <h2>{{__('Employee Performance Dashboard')}}</h2>
             <button class="btn btn-success">
-                <i class="bi bi-plus-circle me-1"></i> Export PDF
+                <i class="bi bi-plus-circle me-1"></i> {{__('Export PDF')}}
             </button>
             <button class="btn btn-success">
-                <i class="bi bi-plus-circle me-1"></i> Export EXCEL
+                <i class="bi bi-plus-circle me-1"></i> {{__('Export EXCEL')}}
             </button>
         </div>
 
@@ -22,10 +22,10 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col me-2">
-                                <div class="text-xs fw-bold text-success text-uppercase mb-1">Completed Jobs</div>
+                                <div class="text-xs fw-bold text-success text-uppercase mb-1">{{__('Completed Jobs')}}</div>
                                 <div class="h5 mb-0 fw-bold text-gray-800">142</div>
                                 <div class="mt-2 text-success small">
-                                    <i class="bi bi-arrow-up me-1"></i>12% from last month
+                                    <i class="bi bi-arrow-up me-1"></i>12% {{__('from last month')}}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -41,10 +41,10 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col me-2">
-                                <div class="text-xs fw-bold text-primary text-uppercase mb-1">Customer Rating</div>
+                                <div class="text-xs fw-bold text-primary text-uppercase mb-1">{{__('Customer Rating')}}</div>
                                 <div class="h5 mb-0 fw-bold text-gray-800">4.8/5</div>
                                 <div class="mt-2 text-primary small">
-                                    <i class="bi bi-star-fill me-1"></i>98% satisfaction
+                                    <i class="bi bi-star-fill me-1"></i>98% {{__('satisfaction')}}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -61,10 +61,10 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col me-2">
-                                <div class="text-xs fw-bold text-info text-uppercase mb-1">Revenue Generated</div>
+                                <div class="text-xs fw-bold text-info text-uppercase mb-1">{{__('Revenue Generated')}}</div>
                                 <div class="h5 mb-0 fw-bold text-gray-800">$12,840</div>
                                 <div class="mt-2 text-success small">
-                                    <i class="bi bi-arrow-up me-1"></i>8% from last month
+                                    <i class="bi bi-arrow-up me-1"></i>8% {{__('from last month')}}
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -81,15 +81,15 @@
             <div class="col-xl-6 col-lg-12 mb-4">
                 <div class="card border-0 shadow">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-white">
-                        <h6 class="m-0 fw-bold">Jobs Completed by Type</h6>
+                        <h6 class="m-0 fw-bold">{{__('Jobs Completed by Type')}}</h6>
                         <div class="dropdown">
                             <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                <i class="bi bi-funnel me-1"></i>Filter
+                                <i class="bi bi-funnel me-1"></i>{{__('Filter')}}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">This Month</a></li>
-                                <li><a class="dropdown-item" href="#">Last Month</a></li>
-                                <li><a class="dropdown-item" href="#">This Quarter</a></li>
+                                <li><a class="dropdown-item" href="#">{{__('This Month')}}</a></li>
+                                <li><a class="dropdown-item" href="#">{{__('Last Month')}}</a></li>
+                                <li><a class="dropdown-item" href="#">{{__('This Quarter')}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -102,15 +102,15 @@
             <div class="col-xl-6 col-lg-12 mb-4">
                 <div class="card border-0 shadow">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-white">
-                        <h6 class="m-0 fw-bold">Monthly Performance Trend</h6>
+                        <h6 class="m-0 fw-bold">{{__('Monthly Performance Trend')}}</h6>
                         <div class="dropdown">
                             <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                <i class="bi bi-calendar me-1"></i>Date Range
+                                <i class="bi bi-calendar me-1"></i>{{__('Date Range')}}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">Last 3 Months</a></li>
-                                <li><a class="dropdown-item" href="#">Last 6 Months</a></li>
-                                <li><a class="dropdown-item" href="#">This Year</a></li>
+                                <li><a class="dropdown-item" href="#">Last 3 {{__('Months')}}</a></li>
+                                <li><a class="dropdown-item" href="#">Last 6 {{__('Months')}}</a></li>
+                                <li><a class="dropdown-item" href="#">This {{__('Year')}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -124,18 +124,18 @@
         <!-- Employee List -->
         <div class="card border-0 shadow mb-4">
             <div class="card-header py-3 bg-white d-flex justify-content-between align-items-center">
-                <h6 class="m-0 fw-bold">Top Performers</h6>
+                <h6 class="m-0 fw-bold">{{__('Top Performers')}}</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-hover" id="employeeTable">
                         <thead>
                             <tr>
-                                <th>Employee</th>
-                                <th>Jobs Completed</th>
-                                <th>Rating</th>
-                                <th>Revenue</th>
-                                <th>Status</th>
+                                <th>{{__('Employee')}}</th>
+                                <th>{{__('Jobs Completed')}}</th>
+                                <th>{{__('Rating')}}</th>
+                                <th>{{__('Revenue')}}</th>
+                                <th>{{__('Status')}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -143,43 +143,43 @@
                                 <td>
                                     <div class="d-flex align-items-center">  
                                         <div>
-                                            <div class="fw-bold">Michael Chen</div>
-                                            <div class="text-muted">Technician</div>
+                                            <div class="fw-bold">{{__('Michael Chen')}}</div>
+                                            <div class="text-muted">{{__('Technician')}}</div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="fw-bold">156</td>
                                 <td class="fw-bold text-warning">4.9/5</td>
                                 <td class="fw-bold">$14,200</td>
-                                <td><span class="badge bg-success performance-badge">Top Performer</span></td>
+                                <td><span class="badge bg-success performance-badge">{{__('Top Performer')}}</span></td>
                             </tr>
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div>
-                                            <div class="fw-bold">Sarah Johnson</div>
-                                            <div class="text-muted">Technician</div>
+                                            <div class="fw-bold">{{__('Sarah Johnson')}}</div>
+                                            <div class="text-muted">{{__('Technician')}}</div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="fw-bold">142</td>
                                 <td class="fw-bold text-warning">4.8/5</td>
                                 <td class="fw-bold">$12,840</td>
-                                <td><span class="badge bg-primary performance-badge">Excellent</span></td>
+                                <td><span class="badge bg-primary performance-badge">{{__('Excellent')}}</span></td>
                             </tr>
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <div>
-                                            <div class="fw-bold">David Wilson</div>
-                                            <div class="text-muted">Technician</div>
+                                            <div class="fw-bold">{{__('David Wilson')}}</div>
+                                            <div class="text-muted">{{__('Technician')}}</div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="fw-bold">118</td>
                                 <td class="fw-bold text-warning">4.6/5</td>
                                 <td class="fw-bold">$9,850</td>
-                                <td><span class="badge bg-warning performance-badge">Good</span></td>
+                                <td><span class="badge bg-warning performance-badge">{{__('Good')}}</span></td>
                             </tr>
                         </tbody>
                     </table>

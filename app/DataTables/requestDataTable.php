@@ -113,15 +113,16 @@ public function forStatus($status)
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
-            Column::make('item_code'),
-            Column::make('warehouse_name'),
-            Column::make('quantity'),
-            Column::make('related_order'),
-            Column::make('created_by'),
-            Column::make('status'),
-            Column::make('notes'),
+            Column::make('id')->title(__('id')),
+            Column::make('item_code')->title(__('item code')),
+            Column::make('warehouse_name')->title(__('warehouse name')),
+            Column::make('quantity')->title(__('quantity')),
+            Column::make('related_order')->title(__('related order')),
+            Column::make('created_by')->title(__('created by')),
+            Column::make('status')->title(__('status')),
+            Column::make('notes')->title(__('notes')),
             Column::computed('action')
+                  ->title(__('action'))
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)

@@ -25,7 +25,16 @@
                     <i data-lucide="settings" class="fs-22"></i>
                 </button>
             </div>
-
+<div class="language-switcher">
+    <a href="{{ route('language.switch', 'en') }}" 
+       class="btn btn-sm btn-outline-primary active">
+        English
+    </a>
+    <a href="{{ route('language.switch', 'ar') }}" 
+       class="btn btn-sm btn-outline-primary active">
+        العربية
+    </a>
+</div>
             <!-- Light/Dark Mode Button -->
             <div class="topbar-item d-none d-sm-flex">
                 <button class="topbar-link" id="light-dark-mode" type="button">

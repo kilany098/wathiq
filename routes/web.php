@@ -39,9 +39,14 @@ use App\Http\Controllers\Technician\{
     InventoryController
 };
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
 
 
 Route::get('/dashboard', function () {
@@ -49,8 +54,17 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::middleware(['auth', 'verified'])->group(function () {
-
+Route::middleware(['auth', 'verified','localization'])->group(function () {
+Route::get('/language/{locale}', function ($locale) {
+    if (!in_array($locale, ['en', 'ar'])) {
+        abort(400, 'Invalid language');
+    }
+    
+    session()->put('locale', $locale);
+    app()->setLocale($locale); // Set it immediately
+    
+    return redirect()->back();
+})->name('language.switch');
     //Users Panel
     Route::prefix('users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('users.index');
@@ -148,6 +162,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //Pending order panel
     Route::prefix('pending_order')->group(function () {
         Route::get('/', [PendingController::class, 'index'])->name('pending.index');
+        Route::post('{id}/accept', [PendingController::class, 'accept'])->name('pending.accept');
+        Route::post('{id}/decline', [PendingController::class, 'decline'])->name('pending.decline');
     });
 
     //Urgent order panel

@@ -3,13 +3,13 @@
 @section('content')
 <div class="page-title-head d-flex align-items-center gap-2">
     <div class="flex-grow-1">
-        <h4 class="fs-18 fw-bold mb-0">Requests</h4>
+        <h4 class="fs-18 fw-bold mb-0">{{__('Requests')}}</h4>
     </div>
 
     <div class="text-end">
         <ol class="breadcrumb m-0 py-0 fs-13">
-            <li class="breadcrumb-item"><a href="javascript: void(0);">Requests</a></li>
-            <li class="breadcrumb-item active">Inventory</li>
+            <li class="breadcrumb-item"><a href="javascript: void(0);">{{__('Requests')}}</a></li>
+            <li class="breadcrumb-item active">{{__('Inventory')}}</li>
         </ol>
     </div>
 </div>
@@ -34,7 +34,7 @@
     @if($errors->any())
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <i class="fas fa-exclamation-triangle me-2"></i>
-            Please check the form below for errors
+            {{__('Please check the form below for errors')}} 
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif

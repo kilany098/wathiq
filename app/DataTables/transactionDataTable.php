@@ -68,7 +68,6 @@ class transactionDataTable extends DataTable
                     ->setTableId('transaction-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->orderBy(0)
                     ->selectStyleSingle()
                     ->buttons([
                         Button::make('excel'),
@@ -86,15 +85,15 @@ class transactionDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
-            Column::make('item'),
-            Column::make('warehouse'),
-            Column::make('transaction_type'),
-            Column::make('quantity'),
-            Column::make('order_number'),
-            Column::make('created_by'),
-            Column::make('notes'),
-            Column::make('created_at'),
+            Column::make('id')->title(__('id')),
+            Column::make('item')->title(__('item')),
+            Column::make('warehouse')->title(__('warehouse')),
+            Column::make('transaction_type')->title(__('transaction type')),
+            Column::make('quantity')->title(__('quantity')),
+            Column::make('order_number')->title(__('order number')),
+            Column::make('created_by')->title(__('created by')),
+            Column::make('notes')->title(__('notes')),
+            Column::make('created_at')->title(__('created at')),
         ];
     }
 

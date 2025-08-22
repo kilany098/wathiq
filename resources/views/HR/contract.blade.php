@@ -3,16 +3,16 @@
 @section('content')
 <div class="page-title-head d-flex align-items-center gap-2">
     <div class="flex-grow-1">
-        <h4 class="fs-18 fw-bold mb-0">Contracts</h4>
+        <h4 class="fs-18 fw-bold mb-0 ">{{__('Contracts')}}</h4>
     </div>
 
     <div class="text-end">
         <ol class="breadcrumb m-0 py-0 fs-13">
-            <li class="breadcrumb-item"><a href="javascript: void(0);">Contracts</a></li>
-            <li class="breadcrumb-item active">HR</li>
+            <li class="breadcrumb-item"><a href="javascript: void(0);">{{__('Contracts')}}</a></li>
+            <li class="breadcrumb-item active">{{__('HR')}}</li>
         </ol>
 
-        <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#createContractModal">Create Contract</button>
+        <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#createContractModal">{{__('Create Contract')}}</button>
     </div>
 </div>
 

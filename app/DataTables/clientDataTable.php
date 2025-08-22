@@ -96,17 +96,18 @@ class clientDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
-            Column::make('name'),
-            Column::make('contact_phone'),
-            Column::make('email'),
-            Column::make('phone'),
-            Column::make('tax_number'),
-            Column::make('commercial_number'),
-            Column::make('type'),
-            Column::make('status'),
-            Column::make('branches'),
+            Column::make('id')->title(__('id')),
+            Column::make('name')->title(__('name')),
+            Column::make('contact_phone')->title(__('contact phone')),
+            Column::make('email')->title(__('email')),
+            Column::make('phone')->title(__('phone')),
+            Column::make('tax_number')->title(__('tax number')),
+            Column::make('commercial_number')->title(__('commercial number')),
+            Column::make('type')->title(__('type')),
+            Column::make('status')->title(__('status')),
+            Column::make('branches')->title(__('branches')),
             Column::computed('action')
+                ->title(__('action'))
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)

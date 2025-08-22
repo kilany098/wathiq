@@ -88,11 +88,12 @@ class categoryDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
-            Column::make('name'),
-            Column::make('description'),
-            Column::make('created_at'),
+            Column::make('id')->title(__('id')),
+            Column::make('name')->title(__('name')),
+            Column::make('description')->title(__('description')),
+            Column::make('created_at')->title(__('created at')),
             Column::computed('action')
+                ->title(__('id'))
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)

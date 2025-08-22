@@ -73,11 +73,11 @@ class StockDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
-            Column::make('item'),
-            Column::make('code'),
-            Column::make('warehouse'),
-            Column::make('quantity'),
+            Column::make('id')->title(__('id')),
+            Column::make('item')->title(__('item')),
+            Column::make('code')->title(__('code')),
+            Column::make('warehouse')->title(__('warehouse')),
+            Column::make('quantity')->title(__('quantity')),
         ];
     }
 

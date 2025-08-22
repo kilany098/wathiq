@@ -163,16 +163,18 @@ class visit_scheduleDataTable extends DataTable
     public function getColumns(): array
     {
         return [    
-            Column::make('id'),
-            Column::make('company'),
-            Column::make('branch'),
-            Column::make('city'),
-            Column::make('zone'),
-            Column::make('month'),
+            Column::make('id')->title(__('id')),
+            Column::make('company')->title(__('company')),
+            Column::make('branch')->title(__('branch')),
+            Column::make('city')->title(__('city')),
+            Column::make('zone')->title(__('zone')),
+            Column::make('month')->title(__('month')),
             Column::make('visits_count')
+            ->title(__('visits count'))
             ->addClass('text-center'),
-            Column::make('status'),
+            Column::make('status')->title(__('status')),
              Column::computed('action')
+             ->title(__('action'))
                   ->exportable(false)
                   ->printable(false)
                   ->width(60)

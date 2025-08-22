@@ -1,18 +1,18 @@
 @extends('layouts.master')
-@section('title','Company Branches')
+@section('title',__('Company Branches'))
 @section('content')
 <div class="page-title-head d-flex align-items-center gap-2">
     <div class="flex-grow-1">
-        <h4 class="fs-18 fw-bold mb-0">{{$client->name}} Branches</h4>
+        <h4 class="fs-18 fw-bold mb-0">{{$client->name}} {{__('Branches')}}</h4>
     </div>
 
     <div class="text-end">
         <ol class="breadcrumb m-0 py-0 fs-13">
-            <li class="breadcrumb-item"><a href="javascript: void(0);">Branches</a></li>
+            <li class="breadcrumb-item"><a href="javascript: void(0);">{{__('Branches')}}</a></li>
             <li class="breadcrumb-item active">{{$client->name}}</li>
         </ol>
 
-        <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#createBranchModal">Create Branch</button>
+        <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#createBranchModal">{{__('Create Branch')}}</button>
     </div>
 </div>
 
