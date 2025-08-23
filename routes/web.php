@@ -1,6 +1,5 @@
 <?php
-
-use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Users\{
@@ -29,6 +28,7 @@ use App\Http\Controllers\SupOp\{
 };
 use App\Http\Controllers\Financial\{
     ChartController,
+    AccountController
 };
 use App\Http\Controllers\HR\{
     InfoController
@@ -49,9 +49,7 @@ Route::get('/', function () {
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 
 Route::middleware(['auth', 'verified','localization'])->group(function () {
@@ -65,6 +63,8 @@ Route::get('/language/{locale}', function ($locale) {
     
     return redirect()->back();
 })->name('language.switch');
+    //Dashboard panel
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     //Users Panel
     Route::prefix('users')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('users.index');
@@ -76,6 +76,9 @@ Route::get('/language/{locale}', function ($locale) {
     //HR panel
     Route::prefix('hr')->group(function () {
         Route::get('/', [InfoController::class, 'index'])->name('hr.index');
+        Route::post('/create', [InfoController::class, 'store'])->name('hr.create');
+        Route::get('/edit/{id}', [InfoController::class, 'edit'])->name('hr.edit');
+        Route::put('/update/{id}', [InfoController::class, 'update'])->name('hr.update');
     });
     //Clients Panel
     Route::prefix('client')->group(function () {
@@ -177,10 +180,11 @@ Route::get('/language/{locale}', function ($locale) {
     //Financial panel
     Route::prefix('financial')->group(function () {
         Route::get('/chart', [ChartController::class, 'index'])->name('chart.index');
-        Route::get('/journal', [ChartController::class, 'journal'])->name('journal.index');
         Route::get('/invoice', [ChartController::class, 'invoice'])->name('invoice.index');
         Route::get('/reports', [ChartController::class, 'reports'])->name('reports.index');
     });
+    
+    Route::resource('accounts', AccountController::class);
     //Technician panel
     Route::prefix('assigments')->group(function () {
     Route::get('/month', [MonthController::class, 'index'])->name('month.index');

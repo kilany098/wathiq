@@ -1,117 +1,175 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قيد يومي | Journal Entry</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .debit-col { background-color: #e8f5e9; }
-        .credit-col { background-color: #ffebee; }
-        .totals-row { font-weight: bold; background-color: #f5f5f5; }
-    </style>
-</head>
-<body>
-    <div class="container-fluid py-4">
-        <div class="card shadow">
-            <div class="card-header bg-primary text-white">
-                <h4><i class="fas fa-book me-2"></i> تسجيل قيد يومي | Journal Entry</h4>
-            </div>
-            <div class="card-body">
-                <form>
-                    <div class="row mb-4">
-                        <div class="col-md-3">
-                            <label class="form-label">تاريخ القيد</label>
-                            <input type="date" class="form-control" value="2023-07-15">
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">رقم القيد</label>
-                            <input type="text" class="form-control" value="JV-2023-0015" readonly>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">الوصف</label>
-                            <input type="text" class="form-control" placeholder="وصف القيد">
-                        </div>
-                    </div>
-
-                    <div class="table-responsive mb-4">
-                        <table class="table table-bordered">
-                            <thead class="table-light">
-                                <tr>
-                                    <th width="30%">الحساب</th>
-                                    <th width="30%">الوصف</th>
-                                    <th width="15%" class="debit-col">مدين</th>
-                                    <th width="15%" class="credit-col">دائن</th>
-                                    <th width="10%"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <select class="form-select">
-                                            <option value="">اختر الحساب</option>
-                                            <option value="1.1.1" selected>1.1.1 - النقدية</option>
-                                            <option value="4.1">4.1 - إيرادات المبيعات</option>
-                                            <option value="5.1">5.1 - مصروفات الرواتب</option>
-                                        </select>
-                                    </td>
-                                    <td><input type="text" class="form-control" value="إيراد من عميل أحمد"></td>
-                                    <td class="debit-col"><input type="number" class="form-control" value="5000.00"></td>
-                                    <td class="credit-col"><input type="number" class="form-control" value="0.00"></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <select class="form-select">
-                                            <option value="">اختر الحساب</option>
-                                            <option value="1.1.1">1.1.1 - النقدية</option>
-                                            <option value="4.1" selected>4.1 - إيرادات المبيعات</option>
-                                            <option value="5.1">5.1 - مصروفات الرواتب</option>
-                                        </select>
-                                    </td>
-                                    <td><input type="text" class="form-control" value="إيراد من عميل أحمد"></td>
-                                    <td class="debit-col"><input type="number" class="form-control" value="0.00"></td>
-                                    <td class="credit-col"><input type="number" class="form-control" value="5000.00"></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr class="totals-row">
-                                    <td colspan="2" class="text-end">المجموع:</td>
-                                    <td class="debit-col text-end">5,000.00</td>
-                                    <td class="credit-col text-end">5,000.00</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="5">
-                                        <button type="button" class="btn btn-sm btn-primary">
-                                            <i class="fas fa-plus me-1"></i> إضافة بند
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                        <div class="alert alert-info mb-0">
-                            <i class="fas fa-info-circle me-2"></i>
-                            يجب أن يتساوى مجموع المدين مع الدائن قبل الحفظ
-                        </div>
-                        <button type="submit" class="btn btn-success px-4">
-                            <i class="fas fa-save me-1"></i> حفظ القيد
+@extends('layouts.master')
+@section('title',__('categories_panel'))
+@section('content')
+   <div class="container-fluid">
+        <div class="row">
+          
+                <!-- محتوى الصفحة -->
+                <div class="container-fluid">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="text-dark">إدارة الفواتير</h2>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-plus me-2"></i>فاتورة جديدة
                         </button>
                     </div>
-                </form>
+
+                    <!-- فلترة الفواتير -->
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-body">
+                            <form class="row g-3">
+                                <div class="col-md-3">
+                                    <label class="form-label">حالة الفاتورة</label>
+                                    <select class="form-select">
+                                        <option value="">جميع الحالات</option>
+                                        <option value="draft">مسودة</option>
+                                        <option value="sent">مرسلة</option>
+                                        <option value="partial">مدفوعة جزئياً</option>
+                                        <option value="paid">مدفوعة</option>
+                                        <option value="overdue">متأخرة</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">من تاريخ</label>
+                                    <input type="date" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">إلى تاريخ</label>
+                                    <input type="date" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">&nbsp;</label>
+                                    <button type="submit" class="btn btn-primary w-100">بحث</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- جدول الفواتير -->
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                            <h5 class="card-title mb-0">قائمة الفواتير</h5>
+                            <div>
+                                <button class="btn btn-sm btn-light me-2">
+                                    <i class="fas fa-print"></i>
+                                </button>
+                                <button class="btn btn-sm btn-light">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <input class="form-check-input" type="checkbox">
+                                            </th>
+                                            <th>رقم الفاتورة</th>
+                                            <th>التاريخ</th>
+                                            <th>العميل</th>
+                                            <th>المبلغ</th>
+                                            <th>المدفوع</th>
+                                            <th>المتبقي</th>
+                                            <th>الحالة</th>
+                                            <th>الإجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <input class="form-check-input" type="checkbox">
+                                            </td>
+                                            <td>INV-2023-1056</td>
+                                            <td>15/11/2023</td>
+                                            <td>مزرعة النخيل</td>
+                                            <td>2,450 ر.س</td>
+                                            <td>2,450 ر.س</td>
+                                            <td>0 ر.س</td>
+                                            <td><span class="badge bg-success">مدفوعة</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary me-1">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-warning me-1">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input class="form-check-input" type="checkbox">
+                                            </td>
+                                            <td>INV-2023-1055</td>
+                                            <td>14/11/2023</td>
+                                            <td>شركة الحدائق</td>
+                                            <td>4,800 ر.س</td>
+                                            <td>2,400 ر.س</td>
+                                            <td>2,400 ر.س</td>
+                                            <td><span class="badge bg-warning text-dark">جزئي</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary me-1">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-warning me-1">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input class="form-check-input" type="checkbox">
+                                            </td>
+                                            <td>INV-2023-1054</td>
+                                            <td>10/11/2023</td>
+                                            <td>بلدية المدينة</td>
+                                            <td>7,200 ر.س</td>
+                                            <td>0 ر.س</td>
+                                            <td>7,200 ر.س</td>
+                                            <td><span class="badge bg-danger">متأخرة</span></td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary me-1">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-warning me-1">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <!-- الترقيم -->
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center mt-4">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">السابق</a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">التالي</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+ @endsection
+@push('scripts')
+<script src="{{ asset('asset/admin/js/inventory/category.js') }}"></script>
+@endpush

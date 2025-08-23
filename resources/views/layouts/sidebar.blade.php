@@ -194,13 +194,13 @@
                 <div class="collapse" id="sidebarFinancial">
                     <ul class="sub-menu">
                         <li class="side-nav-item">
-                            <a href="{{route('chart.index')}}" class="side-nav-link">
-                                <span class="menu-text">{{__('Dynamic Chart')}}</span>
+                            <a href="#" class="side-nav-link">
+                                <span class="menu-text">{{__('Dashboard')}}</span>
                             </a>
                         </li>
                         <li class="side-nav-item">
-                            <a href="{{route('journal.index')}}" class="side-nav-link">
-                                <span class="menu-text">{{__('Journal Entries')}}</span>
+                            <a href="{{route('accounts.index')}}" class="side-nav-link">
+                                <span class="menu-text">{{__('Dynamic Chart')}}</span>
                             </a>
                         </li>
                         <li class="side-nav-item">

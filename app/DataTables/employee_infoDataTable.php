@@ -26,7 +26,7 @@ class employee_infoDataTable extends DataTable
             ->addColumn('action', function ($employee_info) {
                 $actionHtml = '
                     <div class="d-flex gap-2">
-                        <button class="btn btn-soft-warning align-middle fs-18 update-user" data-id="' . $employee_info->id . '" data-bs-toggle="modal" data-bs-target="#editUserModal">
+                        <button class="btn btn-soft-warning align-middle fs-18 update-user" data-id="' . $employee_info->id . '" data-bs-toggle="modal" data-bs-target="#editEmployeeModal">
                             <iconify-icon icon="solar:pen-2-broken"></iconify-icon>
                         </button>
                     </div>';
@@ -93,16 +93,17 @@ class employee_infoDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id'),
-            Column::make('full_name'),
-            Column::make('employee_number'),
-            Column::make('hire_date'),
-            Column::make('termination_date'),
-            Column::make('salary'),
-            Column::make('emergency_contact'),
-            Column::make('emergency_phone'),
-            Column::make('notes'),
+            Column::make('id')->title(__('id')),
+            Column::make('full_name')->title(__('full name')),
+            Column::make('employee_number')->title(__('employee number')),
+            Column::make('hire_date')->title(__('hire date')),
+            Column::make('termination_date')->title(__('termination date')),
+            Column::make('salary')->title(__('salary')),
+            Column::make('emergency_contact')->title(__('emergency contact')),
+            Column::make('emergency_phone')->title(__('emergency phone')),
+            Column::make('notes')->title(__('notes')),
             Column::computed('action')
+            ->title(__('action'))
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)

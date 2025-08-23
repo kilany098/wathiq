@@ -16,7 +16,7 @@ class ChartController extends Controller
     }
 
     public function journal(){
-        return view('financial.journal');
+        return view('financial.dashboard');
     }
 
     public function reports(){

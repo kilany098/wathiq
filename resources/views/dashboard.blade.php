@@ -23,7 +23,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col me-2">
                                 <div class="text-xs fw-bold text-success text-uppercase mb-1">{{__('Completed Jobs')}}</div>
-                                <div class="h5 mb-0 fw-bold text-gray-800">142</div>
+                                <div class="h5 mb-0 fw-bold text-gray-800">{{$completed}}</div>
                                 <div class="mt-2 text-success small">
                                     <i class="bi bi-arrow-up me-1"></i>12% {{__('from last month')}}
                                 </div>
